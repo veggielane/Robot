@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Core", "Robot.Core\Robot.Core.csproj", "{EF9EADC2-252E-42BD-9D9D-1A9A227C493B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Micro.Core", "Robot.Micro.Core\Robot.Micro.Core.csproj", "{6F414A04-3C04-4534-9D26-8EC5E3E827B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Micro.Main", "Robot.Micro.Main\Robot.Micro.Main.csproj", "{09F10FFC-72F0-49F3-A794-5C101E413C78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Core.Test", "Robot.Core.Test\Robot.Core.Test.csproj", "{5064630A-9AE3-4DD8-A0DE-C29841A2B498}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D52711EE-7A27-40B4-AD05-F61DE55190BE}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		Robot.vsmdi = Robot.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Robot.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF9EADC2-252E-42BD-9D9D-1A9A227C493B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF9EADC2-252E-42BD-9D9D-1A9A227C493B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF9EADC2-252E-42BD-9D9D-1A9A227C493B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF9EADC2-252E-42BD-9D9D-1A9A227C493B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F414A04-3C04-4534-9D26-8EC5E3E827B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F414A04-3C04-4534-9D26-8EC5E3E827B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F414A04-3C04-4534-9D26-8EC5E3E827B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F414A04-3C04-4534-9D26-8EC5E3E827B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09F10FFC-72F0-49F3-A794-5C101E413C78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09F10FFC-72F0-49F3-A794-5C101E413C78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09F10FFC-72F0-49F3-A794-5C101E413C78}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{09F10FFC-72F0-49F3-A794-5C101E413C78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09F10FFC-72F0-49F3-A794-5C101E413C78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09F10FFC-72F0-49F3-A794-5C101E413C78}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5064630A-9AE3-4DD8-A0DE-C29841A2B498}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5064630A-9AE3-4DD8-A0DE-C29841A2B498}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5064630A-9AE3-4DD8-A0DE-C29841A2B498}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5064630A-9AE3-4DD8-A0DE-C29841A2B498}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
