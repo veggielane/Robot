@@ -38,3 +38,6 @@ _ReSharper*/
 
 # Office Temp Files
 ~$*
+
+Local.testsettings
+TraceAndTestImpact.testsettings
