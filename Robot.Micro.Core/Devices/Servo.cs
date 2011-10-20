@@ -10,6 +10,7 @@ namespace Robot.Micro.Core.Devices
 
         public Angle Min = Angle.FromDegrees(-45.0);
         public Angle Max = Angle.FromDegrees(45.0);
+        public Angle Offset = Angle.FromDegrees(0);
 
         public Angle Angle
         {
