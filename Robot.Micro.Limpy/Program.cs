@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Text;
 using System.Threading;
-using Robot.Micro.Core.Reactive;
-using Robot.Micro.Core.Timing;
-using GHIElectronics.NETMF.FEZ;
 
 using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
 
-namespace Robot.Micro.Main
+//using GHIElectronics.NETMF.FEZ;
+
+namespace Robot.Micro.Limpy
 {
     public class Program
     {
@@ -18,8 +16,6 @@ namespace Robot.Micro.Main
             Debug.EnableGCMessages(true);
             var robot = new MainRobot();
             robot.Run();
-
-
             /*
              * var bt = new Bluetooth("COM1", 115200);
             bt.Open();
@@ -51,12 +47,6 @@ namespace Robot.Micro.Main
             Debug.Print("test");
             Thread.Sleep(100000);
             timer.Stop();
-
-            
-
-            
-            
-
             new Task(() =>
             {
                 while (true)
@@ -66,12 +56,6 @@ namespace Robot.Micro.Main
                 }
 
             }).Start();
-            */
-
-
-
-
-            /*
                         var test = new SSC32("COM1", 115200);
 
                         if (!test.Connect()) return;
@@ -101,5 +85,6 @@ namespace Robot.Micro.Main
                          */
             Thread.Sleep(Timeout.Infinite);
         }
+
     }
 }

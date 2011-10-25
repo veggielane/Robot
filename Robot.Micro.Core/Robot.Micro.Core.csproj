@@ -37,8 +37,9 @@
     <Compile Include="Devices\CommunicationChannels\IChannel.cs" />
     <Compile Include="Devices\Displays\SerLED.cs" />
     <Compile Include="Devices\LED.cs" />
+    <Compile Include="Devices\Sensors\DS18B20.cs" />
     <Compile Include="Devices\Servo.cs" />
-    <Compile Include="Environment .cs" />
+    <Compile Include="Environment.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="IRobot.cs" />
     <Compile Include="Linq\Delegates.cs" />
@@ -72,15 +73,13 @@
     <Compile Include="Timing\TickTime.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="FEZDomino_GHIElectronics.NETMF.FEZ, Version=4.1.7.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="FEZPanda_II_GHIElectronics.NETMF.FEZ, Version=4.1.7.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="GHIElectronics.NETMF.Hardware, Version=4.1.7.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SPOT.Hardware" />
     <Reference Include="Microsoft.SPOT.Hardware.SerialPort" />
-    <Reference Include="Microsoft.SPOT.Native">
-    </Reference>
+    <Reference Include="Microsoft.SPOT.Native" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Devices\Sensors\" />
     <Folder Include="Legs\" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,3 @@
-
-using System;
 using Robot.Micro.Core.Maths;
 
 namespace Robot.Micro.Core.Devices
@@ -20,7 +18,7 @@ namespace Robot.Micro.Core.Devices
 
         public int Pulse
         {
-            get { return (int)MathHelper.Map(Angle.Radians, -MathHelper.PiOverTwo, MathHelper.PiOverTwo, 600.0, 2400.0); }
+            get {return (int)MathHelper.Map(Angle.Radians, -MathHelper.PiOverTwo, MathHelper.PiOverTwo, 600.0, 2400.0); }
         }
 
         private Angle CheckLimits(Angle angle)

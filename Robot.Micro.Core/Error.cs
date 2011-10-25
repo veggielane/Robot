@@ -13,5 +13,17 @@ namespace Robot.Micro.Core
         {
             return new ArgumentNullException(e);
         }
+        public static Exception ArgumentException(string e)
+        {
+            return new ArgumentException(e);
+        }
+    }
+
+    public class ArgumentException : Exception
+    {
+        public ArgumentException(string message):base(message)
+        {
+            
+        }
     }
 }

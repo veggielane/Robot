@@ -9,7 +9,7 @@ using Robot.Micro.Core.Messaging;
 using Robot.Micro.Core.Messaging.Messages;
 using Robot.Micro.Core.Timing;
 
-namespace Robot.Micro.Main
+namespace Robot.Micro.Limpy
 {
     public class MainRobot:IRobot
     {
@@ -34,7 +34,7 @@ namespace Robot.Micro.Main
             Max = Angle.FromDegrees(45),
             Angle = Angle.FromDegrees(0),
         };
-
+  
         public MainRobot()
         {
             Bus = new MessageBus();
@@ -45,22 +45,21 @@ namespace Robot.Micro.Main
             {
                 _led.Toggle();
                 Bus.Add(new RobotReadyMessage());
-                _servo.Angle += Angle.FromDegrees(1);
-                _ssc.Move();
             };
         }
 
         public void Run()
         {
             Timer.Start();
-            Channels.Add(_bt);
-            _ssc.Connect();
+            //Channels.Add(_bt);
+            //_ssc.Connect();
 
-     
+            
 
-            _ssc.AddServo(0, _servo);
+            //_ssc.AddServo(0, _servo);
             //_servo.Angle = Angle.FromDegrees(90);
-            _ssc.Move();
+            _servo.Angle += Angle.FromDegrees(0);
+            //_ssc.Move();
 
             //setup sensors
 
