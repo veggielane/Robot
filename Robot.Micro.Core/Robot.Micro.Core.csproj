@@ -16,7 +16,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE,MF_FRAMEWORK_VERSION_V4_1,MICRO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -30,6 +30,30 @@
   </PropertyGroup>
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
+    <Compile Include="..\Robot.Core\Error.cs">
+      <Link>Error.cs</Link>
+    </Compile>
+    <Compile Include="..\Robot.Core\Maths\Angle.cs">
+      <Link>Maths\Angle.cs</Link>
+    </Compile>
+    <Compile Include="..\Robot.Core\Maths\Extensions.cs">
+      <Link>Maths\Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Robot.Core\Maths\LinearAlgebra.cs">
+      <Link>Maths\LinearAlgebra.cs</Link>
+    </Compile>
+    <Compile Include="..\Robot.Core\Maths\MathsHelper.cs">
+      <Link>Maths\MathsHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Robot.Core\Maths\Matrix4.cs">
+      <Link>Maths\Matrix4.cs</Link>
+    </Compile>
+    <Compile Include="..\Robot.Core\Maths\Quat.cs">
+      <Link>Maths\Quat.cs</Link>
+    </Compile>
+    <Compile Include="..\Robot.Core\Maths\Vect3.cs">
+      <Link>Maths\Vect3.cs</Link>
+    </Compile>
     <Compile Include="Devices\ExtendedSerialPort.cs" />
     <Compile Include="Devices\PushButton.cs" />
     <Compile Include="Devices\CommunicationChannels\Bluetooth.cs" />
@@ -40,14 +64,15 @@
     <Compile Include="Devices\Sensors\DS18B20.cs" />
     <Compile Include="Devices\Servo.cs" />
     <Compile Include="Environment.cs" />
-    <Compile Include="Error.cs" />
     <Compile Include="IRobot.cs" />
+    <Compile Include="Kinematics\Body.cs" />
+    <Compile Include="Kinematics\Leg3DOF.cs" />
+    <Compile Include="Kinematics\IBody.cs" />
+    <Compile Include="Kinematics\ILeg.cs" />
     <Compile Include="Linq\Delegates.cs" />
     <Compile Include="Linq\Filter.cs" />
     <Compile Include="Linq\Extensions.cs" />
     <Compile Include="Linq\ExtenstionAtrribute.cs" />
-    <Compile Include="Maths\Angle.cs" />
-    <Compile Include="Maths\MathHelper.cs" />
     <Compile Include="Messaging\IMessage.cs" />
     <Compile Include="Messaging\MessageBus.cs" />
     <Compile Include="Messaging\Messages\BaseMessage.cs" />
@@ -75,11 +100,10 @@
   <ItemGroup>
     <Reference Include="FEZPanda_II_GHIElectronics.NETMF.FEZ, Version=4.1.7.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="GHIElectronics.NETMF.Hardware, Version=4.1.7.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="GHIElectronics.NETMF.System, Version=4.1.7.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SPOT.Hardware" />
     <Reference Include="Microsoft.SPOT.Hardware.SerialPort" />
     <Reference Include="Microsoft.SPOT.Native" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Legs\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

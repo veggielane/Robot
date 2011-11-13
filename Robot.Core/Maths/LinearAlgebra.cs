@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿#if MICRO
+namespace Robot.Micro.Core.Maths
+#else
 namespace Robot.Core.Maths
+#endif
 {
-    public class MathHelpers
+    public class LinearAlgebra
     {
         public static double Map(double x, double inMin, double inMax, double outMin, double outMax)
         {

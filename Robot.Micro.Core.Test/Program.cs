@@ -3,9 +3,6 @@ using System.Collections;
 using System.Reflection;
 using System.Threading;
 using Microsoft.SPOT;
-using Microsoft.SPOT.Presentation;
-using Microsoft.SPOT.Presentation.Media;
-
 namespace Robot.Micro.Core.Test
 {
     public class Program
@@ -26,7 +23,7 @@ namespace Robot.Micro.Core.Test
                         ht.Add(method.Name, method);
                 }
             }
-
+            
             foreach (DictionaryEntry entry in ht)
             {
                 Exception exception = null;
@@ -57,9 +54,9 @@ namespace Robot.Micro.Core.Test
             }
             Debug.Print("---------------------------");
             Debug.Print("---------------------------");
-            Debug.Print("Failed: " + countFail);
             Debug.Print("Passed: " + countPass);
-
+            Debug.Print("Failed: " + countFail);
+            /*
             var app = new Application();
             var window = new Window
                              {
@@ -74,7 +71,7 @@ namespace Robot.Micro.Core.Test
                 window.Background = new SolidColorBrush(Colors.Red);
             }
 
-            app.Run(window);
+            app.Run(window);*/
             Thread.Sleep(Timeout.Infinite);
         }
     }

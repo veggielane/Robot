@@ -17,5 +17,9 @@ namespace Robot.Micro.Core.Test
          {
              Assert.IsEqual(10,10);
          }
+         public void TestNearlyEquals()
+         {
+             Assert.IsEqual(10, 10);
+         }
     }
 }

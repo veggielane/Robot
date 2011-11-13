@@ -1,20 +1,30 @@
 ﻿using System;
+#if MICRO
+using Microsoft.SPOT;
+#endif
+
+#if MICRO
+namespace Robot.Micro.Core.Maths
+#else
 namespace Robot.Core.Maths
+#endif
 {
     public struct Angle
     {
-        public const double TwoPi = Math.PI * 2.0;
-        private const double RadToDeg = 360.0 / (2.0 * Math.PI);
-        private const double DegToRad = (2.0 * Math.PI) / 360.0;
+        private const double RadToDeg = 180.0 / System.Math.PI;
+        private const double DegToRad = System.Math.PI / 180.0;
 
         public double Radians { get; private set; }
 
         public double Degrees
         {
-            get
-            {
-                return Radians * RadToDeg;
-            }
+            get{ return Radians * RadToDeg; }
+        }
+
+        private Angle(double radians)
+            : this()
+        {
+            Radians = radians;
         }
 
         public static Angle FromRadians(double radians)
@@ -25,11 +35,6 @@ namespace Robot.Core.Maths
         public static Angle FromDegrees(double degrees)
         {
             return new Angle(degrees * DegToRad);
-        }
-
-        private Angle(double radians) : this()
-        {
-            Radians = radians;
         }
 
         public override string ToString()
@@ -60,6 +65,14 @@ namespace Robot.Core.Maths
         public static Angle operator /(Angle a, double d)
         {
             return new Angle(a.Radians / d);
+        }
+        public static implicit operator Angle(double radians)
+        {
+            return new Angle(radians);
+        }
+        public static implicit operator double(Angle angle)
+        {
+            return angle.Radians;
         }
     }
 }

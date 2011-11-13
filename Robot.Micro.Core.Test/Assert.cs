@@ -1,5 +1,6 @@
 using System;
 using Microsoft.SPOT;
+using Robot.Micro.Core.Maths;
 
 namespace Robot.Micro.Core.Test
 {
@@ -20,10 +21,13 @@ namespace Robot.Micro.Core.Test
             }
         }
 
-        public static void IsNearlyEqual(object obja, object objb)
+        public static void NearlyEquals(double obja, double objb, double epsilon)
         {
-
-            IsTrue(obja != objb, obja + " Does Not Equal" + objb);
+            IsTrue(MathsHelper.NearlyEquals(obja,objb,epsilon), obja + " Does Not Nearly Equal " + objb + " +-" + epsilon.ToString("N10"));
+        }
+        public static void NearlyEquals(double obja, double objb)
+        {
+            NearlyEquals(obja,objb,0.00001);
         }
 
         public static void IsEqual(object obja, object objb)

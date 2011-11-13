@@ -1,7 +1,9 @@
-using System;
-using Microsoft.SPOT;
-
+﻿using System;
+#if MICRO
 namespace Robot.Micro.Core
+#else
+namespace Robot.Core
+#endif
 {
     static class Error
     {

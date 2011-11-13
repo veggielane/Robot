@@ -8,10 +8,11 @@ using Robot.Micro.Core.Maths;
 using Robot.Micro.Core.Messaging;
 using Robot.Micro.Core.Messaging.Messages;
 using Robot.Micro.Core.Timing;
+using Robot.Micro.Core.Kinematics;
 
 namespace Robot.Micro.Limpy
 {
-    public class MainRobot:IRobot
+    public class Limpy:IRobot
     {
         public MessageBus Bus { get; private set; }
 
@@ -21,10 +22,8 @@ namespace Robot.Micro.Limpy
         public bool IsRunning { get; private set; }
 
         //ISensor list
-
         readonly LED _led = new LED((Cpu.Pin)FEZ_Pin.Digital.LED);
         readonly PushButton _button = new PushButton((Cpu.Pin)FEZ_Pin.Interrupt.LDR);
-
         private readonly SSC32 _ssc = new SSC32("COM4", 115200);
         private readonly Bluetooth _bt = new Bluetooth("COM1", 115200);
 
@@ -34,8 +33,9 @@ namespace Robot.Micro.Limpy
             Max = Angle.FromDegrees(45),
             Angle = Angle.FromDegrees(0),
         };
+        
   
-        public MainRobot()
+        public Limpy()
         {
             Bus = new MessageBus();
             Bus.Subscribe(obj => Debug.Print(obj.ToString()));
@@ -46,17 +46,22 @@ namespace Robot.Micro.Limpy
                 _led.Toggle();
                 Bus.Add(new RobotReadyMessage());
             };
+
+
         }
 
         public void Run()
         {
+            Angle test = Angle.FromRadians(MathsHelper.Pi);
+            MathsHelper.Cos(test);
+
             Timer.Start();
-            //Channels.Add(_bt);
+            Channels.Add(_bt);
             //_ssc.Connect();
 
             
 
-            //_ssc.AddServo(0, _servo);
+            _ssc.AddServo(0, _servo);
             //_servo.Angle = Angle.FromDegrees(90);
             _servo.Angle += Angle.FromDegrees(0);
             //_ssc.Move();

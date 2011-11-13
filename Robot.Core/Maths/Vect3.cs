@@ -1,8 +1,11 @@
 ﻿using System;
-
+#if MICRO
+namespace Robot.Micro.Core.Maths
+#else
 namespace Robot.Core.Maths
+#endif
 {
-    public class Vect3 : IFormattable, IComparable, IComparable<Vect3>, IEquatable<Vect3>
+    public class Vect3 : IComparable
     {
         public double X { get; private set; }
         public double Y { get; private set; }
@@ -34,17 +37,17 @@ namespace Robot.Core.Maths
 
         public double Length
         {
-            get { return Math.Sqrt(Math.Pow(X, 2) + Math.Pow(Y, 2) + Math.Pow(Z, 2)); }
+            get { return MathsHelper.Sqrt(MathsHelper.Pow(X, 2) + MathsHelper.Pow(Y, 2) + MathsHelper.Pow(Z, 2)); }
         }
 
         public double LengthSquared
         {
-            get { return Math.Pow(X, 2) + Math.Pow(Y, 2) + Math.Pow(Z, 2); }
+            get { return MathsHelper.Pow(X, 2) + MathsHelper.Pow(Y, 2) + MathsHelper.Pow(Z, 2); }
         }
 
         public Vect3 Normalise()
         {
-            return Length == 0.0 ? Vect3.Zero : new Vect3(X / Length, Y / Length, Z / Length);
+            return MathsHelper.NearlyEquals(Length,0.0) ? Zero : new Vect3(X / Length, Y / Length, Z / Length);
         }
 
         public Vect3 Add(Vect3 v)
@@ -79,12 +82,12 @@ namespace Robot.Core.Maths
 
         public double Distance(Vect3 v)
         {
-            return Math.Sqrt((X - v.X) * (X - v.X) + (Y - v.Y) * (Y - v.Y) + (Z - v.Z) * (Z - v.Z));
+            return MathsHelper.Sqrt((X - v.X) * (X - v.X) + (Y - v.Y) * (Y - v.Y) + (Z - v.Z) * (Z - v.Z));
         }
 
         public double Angle(Vect3 v)
         {
-            return Math.Acos((Normalise()).DotProduct(v.Normalise()));
+            return MathsHelper.Acos((Normalise()).DotProduct(v.Normalise()));
         }
 
         public Vect3 Max(Vect3 v)
@@ -164,7 +167,7 @@ namespace Robot.Core.Maths
 
         public static bool operator ==(Vect3 v1, Vect3 v2)
         {
-            return ((v1.X == v2.X) && (v1.Y == v2.Y) && (v1.Z == v2.Z));
+            return v1 != null && v2 != null && (MathsHelper.NearlyEquals(v1.X, v2.X) && MathsHelper.NearlyEquals(v1.Y, v2.Y) && MathsHelper.NearlyEquals(v1.Z, v2.Z));
         }
 
         public static bool operator !=(Vect3 v1, Vect3 v2)
@@ -174,7 +177,7 @@ namespace Robot.Core.Maths
 
         public static double Angle(Vect3 v1, Vect3 v2)
         {
-            return Math.Acos((v1.Normalise()).DotProduct(v2.Normalise()));
+            return MathsHelper.Acos((v1.Normalise()).DotProduct(v2.Normalise()));
         }
 
         public static Vect3 Max(Vect3 v1, Vect3 v2)
@@ -195,10 +198,7 @@ namespace Robot.Core.Maths
             {
                 throw new ArgumentOutOfRangeException();
             }
-            else
-            {
-                return new Vect3(v1.X * (1 - control) + v2.X * control, v1.Y * (1 - control) + v2.Y * control, v1.Z * (1 - control) + v2.Z * control);
-            }
+            return new Vect3(v1.X * (1 - control) + v2.X * control, v1.Y * (1 - control) + v2.Y * control, v1.Z * (1 - control) + v2.Z * control);
         }
 
         public override int GetHashCode()
@@ -208,11 +208,11 @@ namespace Robot.Core.Maths
 
         public override string ToString()
         {
+#if MICRO
+            return "Vector3<"+X+","+Y+","+Z+">";
+#else
             return (String.Format("Vector3<{0},{1},{2}>", X, Y, Z));
-        }
-        public string ToString(string format, IFormatProvider formatProvider)
-        {
-            return (String.Format("Vector3<{0},{1},{2}>", X, Y, Z));
+#endif
         }
 
         public int CompareTo(object obj)
@@ -224,21 +224,9 @@ namespace Robot.Core.Maths
                 if (this > otherVector) { return 1; }
                 return 0;
             }
-            throw new ArgumentException();
+            throw Error.ArgumentException("");
         }
 
-        public int CompareTo(Vect3 other)
-        {
-            if (this < other)
-            {
-                return -1;
-            }
-            if (this > other)
-            {
-                return 1;
-            }
-            return 0;
-        }
         public override bool Equals(object other)
         {
             if (other is Vect3)
@@ -249,9 +237,5 @@ namespace Robot.Core.Maths
             return false;
         }
 
-        public bool Equals(Vect3 other)
-        {
-            return this == other;
-        }
     }
 }

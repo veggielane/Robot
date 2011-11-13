@@ -18,8 +18,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Micro.Core.Test", "Ro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Micro.Limpy", "Robot.Micro.Limpy\Robot.Micro.Limpy.csproj", "{F43E05AC-A154-45F0-BEBD-3F5BCDCE8227}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFClassLibrary1", "MFClassLibrary1\MFClassLibrary1.csproj", "{2833FC0F-06AC-474B-BFD7-30FF4C4C20BB}"
-EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Robot.vsmdi
@@ -53,10 +51,6 @@ Global
 		{F43E05AC-A154-45F0-BEBD-3F5BCDCE8227}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F43E05AC-A154-45F0-BEBD-3F5BCDCE8227}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F43E05AC-A154-45F0-BEBD-3F5BCDCE8227}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{2833FC0F-06AC-474B-BFD7-30FF4C4C20BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2833FC0F-06AC-474B-BFD7-30FF4C4C20BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2833FC0F-06AC-474B-BFD7-30FF4C4C20BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2833FC0F-06AC-474B-BFD7-30FF4C4C20BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

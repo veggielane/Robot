@@ -18,7 +18,7 @@ namespace Robot.Micro.Core.Devices
 
         public int Pulse
         {
-            get {return (int)MathHelper.Map(Angle.Radians, -MathHelper.PiOverTwo, MathHelper.PiOverTwo, 600.0, 2400.0); }
+            get { return (int)LinearAlgebra.Map(Angle.Radians, -MathsHelper.PiOverTwo, MathsHelper.PiOverTwo, 600.0, 2400.0); }
         }
 
         private Angle CheckLimits(Angle angle)

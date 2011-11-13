@@ -14,7 +14,7 @@ namespace Robot.Micro.Limpy
         {
             Debug.GC(true);
             Debug.EnableGCMessages(true);
-            var robot = new MainRobot();
+            var robot = new Limpy();
             robot.Run();
             /*
              * var bt = new Bluetooth("COM1", 115200);

@@ -42,11 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Error.cs" />
     <Compile Include="Maths\Angle.cs" />
-    <Compile Include="Maths\MathHelpers.cs" />
+    <Compile Include="Maths\LinearAlgebra.cs" />
+    <Compile Include="Maths\MathsHelper.cs" />
+    <Compile Include="Maths\Matrix4.cs" />
+    <Compile Include="Maths\Extensions.cs" />
     <Compile Include="Maths\Quat.cs" />
-    <Compile Include="Maths\Vector3.cs" />
+    <Compile Include="Maths\Vect3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

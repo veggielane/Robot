@@ -18,10 +18,10 @@ namespace Robot.Micro.Core.Devices.CommunicationChannels
         {
 
             DataReceived += (sender, e) =>
-                                {
-                                    if (e != null && e.EventType == SerialData.Chars && BytesToRead > 0 && ReceiveMessage != null)
-                                        ReceiveMessage(ParseMessage(Read()));
-                                };
+            {
+                if (e != null && e.EventType == SerialData.Chars && BytesToRead > 0 && ReceiveMessage != null)
+                    ReceiveMessage(ParseMessage(Read()));
+            };
         }
 
         private IMessage ParseMessage(string data)

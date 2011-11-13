@@ -1,7 +1,11 @@
 ﻿using System;
+#if MICRO
+namespace Robot.Micro.Core.Maths
+#else
 namespace Robot.Core.Maths
+#endif
 {
-    public class Quat : IEquatable<Quat>
+    public class Quat
     {
         public double W { get; private set; }
         public double X { get; private set; }
@@ -34,21 +38,19 @@ namespace Robot.Core.Maths
         private void Normalize()
         {
             var mag = LengthSquared;
-            if (mag != 0.0 && (Math.Round(mag * Math.Pow(10, 6)) / Math.Pow(10, 6) != 1.0))
-            {
-                mag = 1.0 / Math.Sqrt(mag);
-                X = X * mag;
-                Y = Y * mag;
-                Z = Z * mag;
-                W = W * mag;
-            }
+            if (MathsHelper.NearlyEquals(mag, 0.0) || MathsHelper.NearlyEquals(MathsHelper.Round(mag*MathsHelper.Pow(10, 6))/MathsHelper.Pow(10, 6), 1.0)) return;
+            mag = 1.0 / MathsHelper.Sqrt(mag);
+            X = X * mag;
+            Y = Y * mag;
+            Z = Z * mag;
+            W = W * mag;
         }
 
         public double Length
         {
             get
             {
-                return Math.Sqrt(LengthSquared);
+                return MathsHelper.Sqrt(LengthSquared);
             }
         }
 
@@ -56,7 +58,7 @@ namespace Robot.Core.Maths
         {
             get
             {
-                return Math.Pow(W, 2) + Math.Pow(X, 2) + Math.Pow(Y, 2) + Math.Pow(Z, 2);
+                return MathsHelper.Pow(W, 2) + MathsHelper.Pow(X, 2) + MathsHelper.Pow(Y, 2) + MathsHelper.Pow(Z, 2);
             }
         }
 
@@ -101,11 +103,11 @@ namespace Robot.Core.Maths
 
         public static bool operator ==(Quat q2, Quat q1)
         {
-            return q2.Equals(q1);
+            return q2 != null && q2.Equals(q1);
         }
         public static bool operator !=(Quat q2, Quat q1)
         {
-             return !q2.Equals(q1);
+             return q2 != null && !q2.Equals(q1);
         }
 
         #endregion
@@ -122,16 +124,16 @@ namespace Robot.Core.Maths
         /*
         public AxisAngle toAxisAngle()
         {
-            double scale = Math.Sqrt(1.0 - Math.Pow(this.W,2));
-            return new AxisAngle(new Vect3(this.X / scale, this.Y / scale, this.Z / scale), Angle.FromRadians(Math.Acos(this.W) * 2.0f));
+            double scale = MathsHelper.Sqrt(1.0 - MathsHelper.Pow(this.W,2));
+            return new AxisAngle(new Vect3(this.X / scale, this.Y / scale, this.Z / scale), Angle.FromRadians(MathsHelper.Acos(this.W) * 2.0f));
         }
 
         public Euler toEuler()
         {
             return new Euler(
-                Angle.FromRadians(Math.Atan2(2 * this.Y * this.W - 2 * this.X * this.Z, 1 - 2 * Math.Pow(this.Y, 2) - 2 * Math.Pow(this.Z, 2))),
-                Angle.FromRadians(Math.Asin(2 * this.X * this.Y + 2 * this.Z * this.W)),
-                Angle.FromRadians(Math.Atan2(2 * this.X * this.W - 2 * this.Y * this.Z, 1 - 2 * Math.Pow(this.X, 2) - 2 * Math.Pow(this.Z, 2)))
+                Angle.FromRadians(MathsHelper.Atan2(2 * this.Y * this.W - 2 * this.X * this.Z, 1 - 2 * MathsHelper.Pow(this.Y, 2) - 2 * MathsHelper.Pow(this.Z, 2))),
+                Angle.FromRadians(MathsHelper.Asin(2 * this.X * this.Y + 2 * this.Z * this.W)),
+                Angle.FromRadians(MathsHelper.Atan2(2 * this.X * this.W - 2 * this.Y * this.Z, 1 - 2 * MathsHelper.Pow(this.X, 2) - 2 * MathsHelper.Pow(this.Z, 2)))
             );
         }
 
@@ -145,28 +147,43 @@ namespace Robot.Core.Maths
             return XYZ;
         }
 
-        public bool Equals(Quat other)
-        {
-           return X == other.X && Y == other.Y && Z == other.Z && W == other.W;
-        }
-        public override bool Equals(object other)
-        {
-            if (other is Quat)
-            {
-                var otherQuat = (Quat)other;
-                return otherQuat == this;
-            }
-            return false;
-        }
+
 
         public override string ToString()
         {
-            return String.Format("Quat({0},{1},{2},{3})",X, Y, Z, W);
+#if MICRO
+            return "Quat<"+X+","+Y+","+Z+","+W+">";
+#else
+            return String.Format("Quat<{0},{1},{2},{3}>", X, Y, Z, W);
+#endif
+            
         }
 
         public override int GetHashCode()
         {
-            return X.GetHashCode() ^ Y.GetHashCode() ^ Z.GetHashCode() ^ W.GetHashCode();
+            unchecked
+            {
+                int result = W.GetHashCode();
+                result = (result*397) ^ X.GetHashCode();
+                result = (result*397) ^ Y.GetHashCode();
+                result = (result*397) ^ Z.GetHashCode();
+                return result;
+            }
+        }
+
+        public bool Equals(Quat other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return other.W.Equals(W) && other.X.Equals(X) && other.Y.Equals(Y) && other.Z.Equals(Z);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != typeof (Quat)) return false;
+            return Equals((Quat) obj);
         }
     }
 }
