@@ -39,7 +39,7 @@ namespace Robot.Core.Maths
 
         public override string ToString()
         {
-            return Degrees + " Degrees";
+            return "Angle<" + Degrees + "\x00B0>";
         }
 
         public static Angle Zero

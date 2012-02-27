@@ -65,7 +65,7 @@ namespace Robot.Micro.Core.Devices
         {
  	         base.Connect();
              Reset();
-             if (Version.IndexOf("SSC32-V2.03XE") != -1)
+             if (Version != null && Version.IndexOf("SSC32-V2.03XE") != -1)
              {
                  DataReceived += Target;
                  return true;

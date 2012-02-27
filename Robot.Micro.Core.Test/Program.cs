@@ -27,7 +27,7 @@ namespace Robot.Micro.Core.Test
             foreach (DictionaryEntry entry in ht)
             {
                 Exception exception = null;
-                Debug.Print("---------------------------");
+                Debug.Print("--------------------------");
                 Debug.Print("Running: " + entry.Key);
                 try
                 {

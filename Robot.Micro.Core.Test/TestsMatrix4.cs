@@ -7,12 +7,12 @@ namespace Robot.Micro.Core.Test
     {
         public void TestMatrix4Equality()
         {
-            Assert.IsTrue(Matrix4.Identity() == Matrix4.Identity(), "Equality Fail");
+            Assert.IsTrue(Matrix4.Identity == Matrix4.Identity, "Equality Fail");
         }
 
         public void TestMatrix4Identity()
         {
-            Assert.IsTrue(Matrix4.Identity() == new Matrix4(new[]{
+            Assert.IsTrue(Matrix4.Identity== new Matrix4(new[]{
                 new[]{ 1.0, 0.0, 0.0, 0.0 }, 
                 new[]{ 0.0, 1.0, 0.0, 0.0 },
                 new[]{ 0.0, 0.0, 1.0, 0.0 },

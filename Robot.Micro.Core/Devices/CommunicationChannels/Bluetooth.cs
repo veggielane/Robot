@@ -12,7 +12,7 @@ namespace Robot.Micro.Core.Devices.CommunicationChannels
     {
         public event Message ReceiveMessage;
         
-        private JSON _json = new JSON();
+        private readonly JSON _json = new JSON();
         public Bluetooth(String port, int baudRate)
             : base(port, baudRate)
         {
@@ -26,7 +26,7 @@ namespace Robot.Micro.Core.Devices.CommunicationChannels
 
         private IMessage ParseMessage(string data)
         {
-            return new DebugMessage{Msg = "Bluetooth Data:"+ data};
+            return new RemoteMessage{ Msg =  data };
         }
 
         public void SendMessage(IMessage message)

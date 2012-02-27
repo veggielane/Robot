@@ -3,6 +3,8 @@ using System.Threading;
 
 using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
+using Robot.Micro.Core.Messaging;
+using Robot.Micro.Core.Timing;
 
 //using GHIElectronics.NETMF.FEZ;
 
@@ -14,8 +16,11 @@ namespace Robot.Micro.Limpy
         {
             Debug.GC(true);
             Debug.EnableGCMessages(true);
-            var robot = new Limpy();
-            robot.Run();
+
+            using (var robot = new Limpy(new MessageBus(), new AsyncObservableTimer()))
+            {
+                robot.Run();
+            }
             /*
              * var bt = new Bluetooth("COM1", 115200);
             bt.Open();

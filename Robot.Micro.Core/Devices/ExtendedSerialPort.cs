@@ -40,7 +40,7 @@ namespace Robot.Micro.Core.Devices
         public virtual bool Connect()
         {
             Open();
-            if (PortName == "COM4" && IsOpen == true) RemapCOM4();
+            //if (PortName == "COM4" && IsOpen == true) RemapCOM4();
             return IsOpen;
         }
 

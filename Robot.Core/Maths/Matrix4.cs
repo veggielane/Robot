@@ -28,14 +28,20 @@ namespace Robot.Core.Maths
             }
         }
 
-        public static Matrix4 Identity()
+        public Double X { get { return this[1, 4]; } set { this[1, 4] = value; } }
+        public Double Y { get { return this[2, 4]; } set { this[2, 4] = value; } }
+        public Double Z { get { return this[3, 4]; } set { this[3, 4] = value; } }
+
+
+        public static Matrix4 Identity
         {
-            return new Matrix4(new[]{
+            get{
+                return new Matrix4(new[]{
                 new[]{ 1.0, 0.0, 0.0, 0.0 }, 
                 new[]{ 0.0, 1.0, 0.0, 0.0 }, 
                 new[]{ 0.0, 0.0, 1.0, 0.0 }, 
                 new[]{ 0.0, 0.0, 0.0, 1.0 }
-            });
+            });}
         }
 
         public double Mag()
@@ -131,6 +137,9 @@ namespace Robot.Core.Maths
                 new[]{ 0.0, 0.0, 0.0, 1.0 }
             });
         }
+
+        
+
 
         public static Matrix4 Rotate(Axis axis, Angle theta)
         {

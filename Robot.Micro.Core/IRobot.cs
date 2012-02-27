@@ -6,12 +6,13 @@ using Robot.Micro.Core.Timing;
 
 namespace Robot.Micro.Core
 {
-    public interface IRobot
+    public interface IRobot:IDisposable
     {
-        MessageBus Bus { get; }
-        CommunicationChannels Channels { get; }
+        IMessageBus Bus { get; }
+        //CommunicationChannels Channels { get; }
         ITimer Timer { get; }
         bool IsRunning { get; }
         void Run();
+        void Stop();
     }
 }
