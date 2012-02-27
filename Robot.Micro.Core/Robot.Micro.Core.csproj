@@ -56,9 +56,7 @@
     </Compile>
     <Compile Include="Devices\ExtendedSerialPort.cs" />
     <Compile Include="Devices\PushButton.cs" />
-    <Compile Include="Devices\CommunicationChannels\Bluetooth.cs" />
-    <Compile Include="Devices\CommunicationChannels\CommunicationChannels.cs" />
-    <Compile Include="Devices\CommunicationChannels\IChannel.cs" />
+    <Compile Include="Devices\Bluetooth.cs" />
     <Compile Include="Devices\Displays\SerLED.cs" />
     <Compile Include="Devices\LED.cs" />
     <Compile Include="Devices\Sensors\DS18B20.cs" />
@@ -75,6 +73,8 @@
     <Compile Include="Linq\Filter.cs" />
     <Compile Include="Linq\Extensions.cs" />
     <Compile Include="Linq\ExtenstionAtrribute.cs" />
+    <Compile Include="Messaging\Gateways\BluetoothGateway.cs" />
+    <Compile Include="Messaging\Gateways\Gateway.cs" />
     <Compile Include="Messaging\Gateways\IGateway.cs" />
     <Compile Include="Messaging\IMessage.cs" />
     <Compile Include="Messaging\MessageBus.cs" />
@@ -92,7 +92,11 @@
     <Compile Include="Reactive\ObservableExtensions.cs" />
     <Compile Include="Reactive\Observer.cs" />
     <Compile Include="Sensors\ISensor.cs" />
+    <Compile Include="Serialisation\BinarySerialiser.cs" />
+    <Compile Include="Serialisation\ASCIISerialiser.cs" />
+    <Compile Include="Serialisation\ISerialiser.cs" />
     <Compile Include="Serialisation\JSON.cs" />
+    <Compile Include="Serialisation\Serialiser.cs" />
     <Compile Include="Threading\Task.cs" />
     <Compile Include="Timing\AsyncObservableTimer.cs" />
     <Compile Include="Timing\Extensions.cs" />

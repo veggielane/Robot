@@ -3,11 +3,13 @@ using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
 using Robot.Micro.Core;
 using Robot.Micro.Core.Devices;
-using Robot.Micro.Core.Devices.CommunicationChannels;
+
 using Robot.Micro.Core.Maths;
 using Robot.Micro.Core.Messaging;
+using Robot.Micro.Core.Messaging.Gateways;
 using Robot.Micro.Core.Messaging.Messages;
 using Robot.Micro.Core.Reactive;
+using Robot.Micro.Core.Serialisation;
 using Robot.Micro.Core.Timing;
 using Robot.Micro.Core.Kinematics;
 
@@ -15,6 +17,8 @@ namespace Robot.Micro.Limpy
 {
     public class Limpy:IRobot
     {
+
+
         public IMessageBus Bus { get; private set; }
 
 
@@ -42,6 +46,7 @@ namespace Robot.Micro.Limpy
         public Limpy(IMessageBus bus, ITimer timer)
         {
             Bus = bus;
+            Bus.AddGateway(new BluetoothGateway(_bt, new BinarySerialiser()));
             Timer = timer;
             Bus.Subscribe(obj => Debug.Print(obj.ToString()));
             _button.Pressed += (pushButton, state) =>
@@ -51,14 +56,10 @@ namespace Robot.Micro.Limpy
             };
         }
 
-        
-        
-
         public void Run()
         {
             Timer.Start();
             _body = new Body { Position = Matrix4.Identity };
-
             _legLeftFront = new Leg4DOF(_body)
             {
                 BasePosition = Matrix4.Translate(0.0, 0.0, 0.0),
@@ -71,11 +72,9 @@ namespace Robot.Micro.Limpy
                 FootPosition = Matrix4.Translate(35.0 +52.0, 0.0, -48.0),
             };
 
-            Bus.OfType(typeof(RemoteMessage)).Subscribe(obj => Move(obj as RemoteMessage));
-
-
+            //Bus.OfType(typeof(RemoteMessage)).Subscribe(obj => Move(obj as RemoteMessage));
             //Angle test = Angle.FromRadians(MathsHelper.Pi);
-           // MathsHelper.Cos(test);
+            //MathsHelper.Cos(test);
 
 
              //_ssc.Connect();

@@ -44,7 +44,10 @@ namespace Robot.Micro.Core.Devices
             return IsOpen;
         }
 
-
+        public void Write(Byte[] data)
+        {
+            Write(data, 0, data.Length);
+        }
         public void Write(String data)
         {
             var buffer = Encoding.UTF8.GetBytes(data);

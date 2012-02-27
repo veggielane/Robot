@@ -1,12 +1,11 @@
 using System;
 using Microsoft.SPOT;
-using Robot.Micro.Core.Devices.CommunicationChannels;
+using Robot.Micro.Core.Reactive;
 
 namespace Robot.Micro.Core.Messaging.Gateways
 {
-    public interface IGateway
+    public interface IGateway : IObservable
     {
-        event Message ReceiveMessage;
-
+        void Add(IMessage message);
     }
 }

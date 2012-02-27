@@ -7,5 +7,6 @@ namespace Robot.Micro.Core.Messaging
     public interface IMessage
     {
         DateTime Time { get; }
+        bool Remote { get; }
     }
 }
