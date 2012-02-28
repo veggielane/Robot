@@ -1,6 +1,8 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Microsoft.SPOT;
 using Robot.Micro.Core.Messaging;
+using Robot.Micro.Core.Messaging.Messages;
 using Robot.Micro.Core.Timing;
 namespace Robot.Micro.Limpy
 {
@@ -16,5 +18,6 @@ namespace Robot.Micro.Limpy
             }
             Thread.Sleep(Timeout.Infinite);
         }
+
     }
 }

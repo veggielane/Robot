@@ -1,3 +1,4 @@
+using System;
 using GHIElectronics.NETMF.FEZ;
 using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
@@ -46,7 +47,7 @@ namespace Robot.Micro.Limpy
         public Limpy(IMessageBus bus, ITimer timer)
         {
             Bus = bus;
-            Bus.AddGateway(new BluetoothGateway(_bt, new BinarySerialiser()));
+            Bus.AddGateway(new BluetoothGateway(_bt, new ASCIISerialiser()));
             Timer = timer;
             Bus.Subscribe(obj => Debug.Print(obj.ToString()));
             _button.Pressed += (pushButton, state) =>
@@ -58,6 +59,7 @@ namespace Robot.Micro.Limpy
 
         public void Run()
         {
+            _bt.Connect();
             Timer.Start();
             _body = new Body { Position = Matrix4.Identity };
             _legLeftFront = new Leg4DOF(_body)
@@ -91,7 +93,7 @@ namespace Robot.Micro.Limpy
             //new JSON().Decode(test, typeof(DebugMessage));
             //set up effectors
             Bus.Add(new RobotReadyMessage());
-            //MainLoop();
+            MainLoop();
         }
 
         public void Stop()

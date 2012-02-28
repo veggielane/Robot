@@ -1,5 +1,6 @@
 using System;
 using System.IO.Ports;
+using System.Text;
 using Microsoft.SPOT;
 using Robot.Micro.Core.Devices;
 using Robot.Micro.Core.Reactive;
@@ -17,6 +18,7 @@ namespace Robot.Micro.Core.Messaging.Gateways
             this.Where(obj => ((IMessage)obj).Remote).Subscribe(obj => _device.Write(serialiser.Serialise(obj as IMessage)));
             _device.DataReceived += (sender, e) =>
             {
+                
                 if (e == null || e.EventType != SerialData.Chars || _device.BytesToRead <= 0) return;
                 var receiveBuffer = new byte[_device.BytesToRead];
                 _device.Read(receiveBuffer, 0, receiveBuffer.Length);

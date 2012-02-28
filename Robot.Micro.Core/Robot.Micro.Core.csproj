@@ -73,6 +73,7 @@
     <Compile Include="Linq\Filter.cs" />
     <Compile Include="Linq\Extensions.cs" />
     <Compile Include="Linq\ExtenstionAtrribute.cs" />
+    <Compile Include="Linq\SelectFilter.cs" />
     <Compile Include="Messaging\Gateways\BluetoothGateway.cs" />
     <Compile Include="Messaging\Gateways\Gateway.cs" />
     <Compile Include="Messaging\Gateways\IGateway.cs" />

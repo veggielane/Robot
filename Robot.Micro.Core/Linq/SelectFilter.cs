@@ -1,35 +1,39 @@
+using System;
 using System.Collections;
+using Microsoft.SPOT;
+
 namespace Robot.Micro.Core.Linq
 {
-    public class Filter : IEnumerable
+
+    public class SelectFilter : IEnumerable
     {
         private class Enumerator : IEnumerator
         {
-            IEnumerator e;
-            Predicate p;
+            readonly IEnumerator _e;
+            readonly Predicate _p;
 
             internal Enumerator(IEnumerator e, Predicate p)
             {
-                this.e = e;
-                this.p = p;
+                _e = e;
+                _p = p;
             }
 
             object IEnumerator.Current
             {
-                get { return e.Current; }
+                get { return _e.Current; }
             }
 
             void IEnumerator.Reset()
             {
-                e.Reset();
+                _e.Reset();
             }
 
             bool IEnumerator.MoveNext()
             {
-                var b = e.MoveNext();
-                while (b && !p(e.Current))
+                var b = _e.MoveNext();
+                while (b && !_p(_e.Current))
                 {
-                    b = e.MoveNext();
+                    b = _e.MoveNext();
                 }
                 return b;
             }
@@ -37,7 +41,7 @@ namespace Robot.Micro.Core.Linq
         IEnumerable e;
         Predicate p;
 
-        public Filter(IEnumerable e, Predicate p)
+        public SelectFilter(IEnumerable e, Predicate p)
         {
             this.e = e;
             this.p = p;

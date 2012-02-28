@@ -122,7 +122,17 @@ namespace Robot.Micro.Core.Linq
         //Range
         //Repeat
         //Reverse
+
         //Select
+        
+        public static IEnumerable Select(this IEnumerable items, Predicate action)
+        {
+            throw new NotImplementedException();
+            return new SelectFilter(items, action);
+        }
+
+
+        
         //SelectMany
         //SequenceEqual
         //Single

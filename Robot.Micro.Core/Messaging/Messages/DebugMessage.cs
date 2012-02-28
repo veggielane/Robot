@@ -9,7 +9,7 @@ namespace Robot.Micro.Core.Messaging.Messages
         }
         public override string ToString()
         {
-            return Msg;
+            return "Debug Message"+ Msg;
         }
     }
 }
