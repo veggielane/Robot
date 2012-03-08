@@ -42,3 +42,5 @@ _ReSharper*/
 Local.testsettings
 TraceAndTestImpact.testsettings
 OnBoardFlash.dat
+
+.ncrunchsolution
