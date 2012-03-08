@@ -43,4 +43,4 @@ Local.testsettings
 TraceAndTestImpact.testsettings
 OnBoardFlash.dat
 
-.ncrunchsolution
+*.ncrunchsolution
