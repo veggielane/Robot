@@ -44,3 +44,4 @@ TraceAndTestImpact.testsettings
 OnBoardFlash.dat
 
 *.ncrunchsolution
+*.ncrunchproject
