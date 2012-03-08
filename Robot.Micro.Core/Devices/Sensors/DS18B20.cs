@@ -98,7 +98,7 @@ namespace Brewery.Core
                         temperature = ow.ReadByte() | (int)(ow.ReadByte() << 8);
                         temperature = ((6 * (int)temperature) + (int)temperature / 4) / 100.0;
 
-                        Debug.Print("Temperature: " + temperature);
+                        Debug.Write("Temperature: " + temperature);
                         sensors[OW_number] = new DS18B20() { Address = OW_address, Temperature = temperature / 16.0 };
                         OW_number++;
                     }

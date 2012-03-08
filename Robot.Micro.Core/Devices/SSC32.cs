@@ -57,7 +57,7 @@ namespace Robot.Micro.Core.Devices
         {
             if (e.EventType == SerialData.Chars)
             {
-                Debug.Print(Read().Trim());
+                Debug.Write(Read().Trim());
             }
         }
 

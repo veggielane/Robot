@@ -18,7 +18,7 @@ namespace Robot.Micro.Core.Serialisation
 
         public void Deserialise(byte[] data)
         {
-            Debug.Print(new String(Encoding.UTF8.GetChars(data)));
+            Debug.Write(new String(Encoding.UTF8.GetChars(data)));
         }
 
         public byte[] Serialise(IMessage message)

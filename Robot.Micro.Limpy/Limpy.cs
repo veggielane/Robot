@@ -1,6 +1,5 @@
 using System;
 using GHIElectronics.NETMF.FEZ;
-using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
 using Robot.Micro.Core;
 using Robot.Micro.Core.Devices;
@@ -49,7 +48,7 @@ namespace Robot.Micro.Limpy
             Bus = bus;
             Bus.AddGateway(new BluetoothGateway(_bt, new ASCIISerialiser()));
             Timer = timer;
-            Bus.Subscribe(obj => Debug.Print(obj.ToString()));
+            Bus.Subscribe(obj => Debug.Write(obj.ToString()));
             _button.Pressed += (pushButton, state) =>
             {
                 _led.Toggle();

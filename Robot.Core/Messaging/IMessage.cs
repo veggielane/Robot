@@ -1,8 +1,9 @@
 using System;
-using Microsoft.SPOT;
-using Robot.Micro.Core.Timing;
-
+#if MICRO
 namespace Robot.Micro.Core.Messaging
+#else
+namespace Robot.Core.Messaging
+#endif
 {
     public interface IMessage
     {

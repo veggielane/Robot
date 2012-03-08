@@ -1,6 +1,10 @@
+#if MICRO
 using Robot.Micro.Core.Maths;
-
 namespace Robot.Micro.Core.Devices
+#else
+using Robot.Core.Maths;
+namespace Robot.Core.Devices
+#endif
 {
     public class Servo
     {

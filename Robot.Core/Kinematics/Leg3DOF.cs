@@ -1,9 +1,12 @@
-using System;
-using Microsoft.SPOT;
+#if MICRO
 using Robot.Micro.Core.Devices;
 using Robot.Micro.Core.Maths;
-
 namespace Robot.Micro.Core.Kinematics
+#else
+using Robot.Core.Devices;
+using Robot.Core.Maths;
+namespace Robot.Core.Kinematics
+#endif
 {
     public class Leg3DOF : ILeg
     {
@@ -60,9 +63,9 @@ namespace Robot.Micro.Core.Kinematics
         public Angle FemurOffset { get; set; }
         public Angle TibiaOffset { get; set; }
 
-        public bool CoxaInvert = false;
-        public bool FemurInvert = false;
-        public bool TibiaInvert = false;
+        public bool CoxaInvert;
+        public bool FemurInvert;
+        public bool TibiaInvert;
 
         public Leg3DOF(IBody body)
         {
@@ -92,72 +95,20 @@ namespace Robot.Micro.Core.Kinematics
              */
             var angle1 = MathsHelper.Atan2(_footPosition.Y - BasePosition.Y, _footPosition.X - BasePosition.X);
             var bd = _footPosition.ToVector3() - (BasePosition * Matrix4.RotateZ(CoxaServo.Angle) * Matrix4.Translate(CoxaLength, 0, 0)).ToVector3();
-            //Debug.Print(bd.ToString());
+            //Debug.Write(bd.ToString());
             var angle3 = 2 * MathsHelper.Atan2(
                 MathsHelper.Sqrt(MathsHelper.Pow(FemurLength + TibiaLength, 2) - (MathsHelper.Pow(bd.X, 2) + MathsHelper.Pow(bd.Z, 2))),
                 MathsHelper.Sqrt(MathsHelper.Pow(bd.X, 2) + MathsHelper.Pow(bd.Z, 2) - MathsHelper.Pow(FemurLength - TibiaLength, 2))
                                    );
             var angle2 = MathsHelper.Atan2(bd.Z, bd.X) + MathsHelper.Atan2(TibiaLength * MathsHelper.Sin(angle3), FemurLength + TibiaLength * MathsHelper.Cos(angle3));
 
-
-
             CoxaServo.Angle = (CoxaInvert ? -1 : 1) * (angle1 + CoxaOffset);
             FemurServo.Angle = (FemurInvert ? -1 : 1) * (angle2 + FemurOffset);
             TibiaServo.Angle = (TibiaInvert ? -1 : 1) * (angle3 + TibiaOffset);
-            
-            Debug.Print(CoxaServo.Angle.ToString());
-            Debug.Print(FemurServo.Angle.ToString());
-            Debug.Print(TibiaServo.Angle.ToString());
-            /** 
-             * 
-            Angle Theta1;
-            Angle Theta2;
-            Double E = _footPosition[1, 4] - _basePosition[1, 4];
-            Double D = _footPosition[3, 4] - _basePosition[3, 4];
 
-            Theta2 = 2*MathsHelper.Atan2(
-                MathsHelper.Sqrt(MathsHelper.Pow(FemurLength + TibiaLength, 2) - (MathsHelper.Pow(E, 2) + MathsHelper.Pow(D, 2))), 
-                MathsHelper.Sqrt(MathsHelper.Pow(E, 2) + MathsHelper.Pow(D, 2) - MathsHelper.Pow(FemurLength - TibiaLength, 2))
-            );
-            Debug.Print(Theta2.ToString());
-            //Theta1 = 
-
-            Theta1 = MathsHelper.Atan2(D, E) + MathsHelper.Atan2(TibiaLength * MathsHelper.Sin(Theta2), FemurLength + TibiaLength * MathsHelper.Cos(Theta2));
-            Debug.Print(Theta1.ToString());
- 
-            
-
-            //Hip H
-            Debug.Print(_footPosition.ToString());
-            Debug.Print(_basePosition.ToString());
-            CoxaServo.Angle = MathsHelper.Atan2(_footPosition[2, 4] - _basePosition[2, 4], _footPosition[1, 4] - _basePosition[1, 4]);
-            Debug.Print(CoxaServo.Angle.ToString());
-
-            Debug.Print("A:");
-            Vect3 A = _basePosition.ToVector3();
-            Debug.Print(A.ToString());
-            Debug.Print("B:");
-            Vect3 B = (_basePosition * Matrix4.RotateZ(CoxaServo.Angle) * Matrix4.Translate(CoxaLength, 0, 0)).ToVector3();
-            Debug.Print(B.ToString());
-            Debug.Print(B.Length.ToString());
-
-
-            Vect3 D = _footPosition.ToVector3();
-            Debug.Print("D:");
-            Debug.Print(D.ToString());
-
-            Vect3 BD = D - B;
-
-
-            //Hip V
-            FemurServo.Angle = MathsHelper.Atan2(BD.Z, MathsHelper.Sqrt(MathsHelper.Pow(BD.X, 2.0) + MathsHelper.Pow(BD.Y, 2.0))) + MathsHelper.Acos((MathsHelper.Pow(FemurLength, 2.0) - MathsHelper.Pow(TibiaLength, 2.0) + MathsHelper.Pow(BD.Length, 2.0)) / (2 * FemurLength * BD.Length));
-            Debug.Print(FemurServo.Angle.ToString());
-            //Double q1 = 
-
-             //
-            // Knee
-            TibiaServo.Angle = MathsHelper.Acos((MathsHelper.Pow(FemurLength, 2.0) + MathsHelper.Pow(TibiaLength, 2.0) - MathsHelper.Pow(BD.Length, 2.0)) / (2 * FemurLength * TibiaLength));
-            Debug.Print(TibiaServo.Angle.ToString());*/
+            Debug.Write(CoxaServo.Angle.ToString());
+            Debug.Write(FemurServo.Angle.ToString());
+            Debug.Write(TibiaServo.Angle.ToString());
         }
     }
 }

@@ -74,7 +74,7 @@ namespace Robot.Micro.Core.Serialisation
             Type type = Type.GetType("Robot.Micro.Core.Messaging.Messages." + split[0]);
             if (type != null)
             {
-                Debug.Print("creating");
+                Debug.Write("creating");
                 var constructor = type.GetConstructor(new Type[] { });
                 if (constructor != null)
                 {
@@ -83,6 +83,7 @@ namespace Robot.Micro.Core.Serialisation
                     {
                         var temp = parameter.Split(':');
                         MethodInfo m = type.GetMethod("set_" + temp[0]);
+                        
                         if (m != null)
                         {
                             m.Invoke(obj, new object[] { temp[1] });

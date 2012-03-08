@@ -1,11 +1,9 @@
 using System;
 using System.Threading;
-using Microsoft.SPOT;
-using Robot.Micro.Core.Reactive;
-
-namespace Robot.Micro.Core.Timing
+using Robot.Core.Reactive;
+namespace Robot.Core.Timing
 {
-    public class ObservableTimer : Observable, ITimer
+    public class ObservableTimer : Observable<TickTime>, ITimer
     {
         #region TimerState enum
 

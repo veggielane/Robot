@@ -30,8 +30,26 @@
   </PropertyGroup>
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
+    <Compile Include="..\Robot.Core\Debug.cs">
+      <Link>Debug.cs</Link>
+    </Compile>
+    <Compile Include="..\Robot.Core\Devices\Servo.cs">
+      <Link>Devices\Servo.cs</Link>
+    </Compile>
+    <Compile Include="..\Robot.Core\Environment.cs">
+      <Link>Environment.cs</Link>
+    </Compile>
     <Compile Include="..\Robot.Core\Error.cs">
       <Link>Error.cs</Link>
+    </Compile>
+    <Compile Include="..\Robot.Core\Kinematics\IBody.cs">
+      <Link>Kinematics\IBody.cs</Link>
+    </Compile>
+    <Compile Include="..\Robot.Core\Kinematics\ILeg.cs">
+      <Link>Kinematics\ILeg.cs</Link>
+    </Compile>
+    <Compile Include="..\Robot.Core\Kinematics\Leg3DOF.cs">
+      <Link>Kinematics\Leg3DOF.cs</Link>
     </Compile>
     <Compile Include="..\Robot.Core\Maths\Angle.cs">
       <Link>Maths\Angle.cs</Link>
@@ -54,20 +72,21 @@
     <Compile Include="..\Robot.Core\Maths\Vect3.cs">
       <Link>Maths\Vect3.cs</Link>
     </Compile>
+    <Compile Include="..\Robot.Core\Messaging\IMessage.cs">
+      <Link>Messaging\IMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\Robot.Core\Messaging\Messages\Messages.cs">
+      <Link>Messaging\Messages\Messages.cs</Link>
+    </Compile>
     <Compile Include="Devices\ExtendedSerialPort.cs" />
     <Compile Include="Devices\PushButton.cs" />
     <Compile Include="Devices\Bluetooth.cs" />
     <Compile Include="Devices\Displays\SerLED.cs" />
     <Compile Include="Devices\LED.cs" />
     <Compile Include="Devices\Sensors\DS18B20.cs" />
-    <Compile Include="Devices\Servo.cs" />
-    <Compile Include="Environment.cs" />
     <Compile Include="Inject\Kernel.cs" />
     <Compile Include="IRobot.cs" />
     <Compile Include="Kinematics\Body.cs" />
-    <Compile Include="Kinematics\Leg3DOF.cs" />
-    <Compile Include="Kinematics\IBody.cs" />
-    <Compile Include="Kinematics\ILeg.cs" />
     <Compile Include="Kinematics\Leg4DOF.cs" />
     <Compile Include="Linq\Delegates.cs" />
     <Compile Include="Linq\Filter.cs" />
@@ -77,12 +96,7 @@
     <Compile Include="Messaging\Gateways\BluetoothGateway.cs" />
     <Compile Include="Messaging\Gateways\Gateway.cs" />
     <Compile Include="Messaging\Gateways\IGateway.cs" />
-    <Compile Include="Messaging\IMessage.cs" />
     <Compile Include="Messaging\MessageBus.cs" />
-    <Compile Include="Messaging\Messages\BaseMessage.cs" />
-    <Compile Include="Messaging\Messages\RemoteMessage.cs" />
-    <Compile Include="Messaging\Messages\DebugMessage.cs" />
-    <Compile Include="Messaging\Messages\RobotReadyMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Devices\SSC32.cs" />
     <Compile Include="Reactive\AnonymousDisposable.cs" />

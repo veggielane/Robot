@@ -2,7 +2,6 @@ using System;
 using System.IO.Ports;
 using System.Text;
 using GHIElectronics.NETMF.Hardware.LowLevel;
-using Microsoft.SPOT;
 
 namespace Robot.Micro.Core.Devices
 {
@@ -72,7 +71,7 @@ namespace Robot.Micro.Core.Devices
 
         private void RemapCOM4()
         {
-            Debug.Print("remapping COM4");
+            Debug.Write("remapping COM4");
             // remap COM4 RX (in)  pin from P4.29/DIO17 to P0.26 (that is An3)
             // remap COM4 TX (out) pin from P4.28/DIO13 to P0.25 (that is An2)
             var pinsel9 = new Register(0xE002C024);
