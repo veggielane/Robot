@@ -97,6 +97,7 @@
     <Compile Include="Messaging\Gateways\Gateway.cs" />
     <Compile Include="Messaging\Gateways\IGateway.cs" />
     <Compile Include="Messaging\MessageBus.cs" />
+    <Compile Include="Modules\Bluetooth.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Devices\SSC32.cs" />
     <Compile Include="Reactive\AnonymousDisposable.cs" />
@@ -121,7 +122,6 @@
     <Compile Include="Timing\TickTime.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="FEZPanda_II_GHIElectronics.NETMF.FEZ, Version=4.1.7.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="GHIElectronics.NETMF.Hardware, Version=4.1.7.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="GHIElectronics.NETMF.System, Version=4.1.7.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SPOT.Hardware" />

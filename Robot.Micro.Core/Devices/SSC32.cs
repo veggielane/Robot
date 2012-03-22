@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Text;
 using System.Threading;
-using Microsoft.SPOT;
 using System.IO.Ports;
 
 namespace Robot.Micro.Core.Devices
@@ -11,7 +10,6 @@ namespace Robot.Micro.Core.Devices
     {
         private readonly Char _cr = Convert.ToChar(13);
         public enum MoveTypes { Normal, Speed, Time };
-
 
         public Hashtable Servos = new Hashtable(32);
 
@@ -48,7 +46,18 @@ namespace Robot.Micro.Core.Devices
         {
             foreach (DictionaryEntry de in Servos)
             {
-                Write("#" + de.Key + "P" + ((Servo)de.Value).Pulse);
+                Write("#" + de.Key + " P" + ((Servo)de.Value).Pulse);
+            }
+            switch (type)
+            {
+                case MoveTypes.Speed:
+                    Write(" S" + param);
+                    break;
+                case MoveTypes.Time:
+                     Write(" T" + param);
+                    break;
+                case MoveTypes.Normal:
+                    break;
             }
             Execute();
         }

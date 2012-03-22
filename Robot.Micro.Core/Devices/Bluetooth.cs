@@ -21,7 +21,7 @@ namespace Robot.Micro.Core.Devices
 
         private IMessage ParseMessage(string data)
         {
-            return new RemoteMessage{ Msg =  data };
+            return new DebugMessage(){ Msg =  data };
         }
         /*
         public void SendMessage(IMessage message)

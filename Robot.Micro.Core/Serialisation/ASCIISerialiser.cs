@@ -81,11 +81,12 @@ namespace Robot.Micro.Core.Serialisation
                     var obj = constructor.Invoke(null);
                     foreach (var parameter in parameters)
                     {
-                        var temp = parameter.Split(':');
+                        Debug.Write(parameter);
+                        var temp = parameter.Split('=');
                         MethodInfo m = type.GetMethod("set_" + temp[0]);
-                        
                         if (m != null)
                         {
+                            Debug.Write("invoke");
                             m.Invoke(obj, new object[] { temp[1] });
                         }
                     }

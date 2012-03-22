@@ -25,24 +25,20 @@ namespace Robot.Core.Messaging.Messages
         }
         public override string ToString()
         {
-            return "Debug Message" + Msg;
+            return "Debug Message: " + Msg;
         }
     }
 
-    public class RemoteMessage : BaseMessage
-    {
-        public string Msg { get; set; }
-        public RemoteMessage()
-        {
-            Msg = "";
-        }
-        public override string ToString()
-        {
-            return Msg;
-        }
-    }
 
     public class RobotReadyMessage : BaseMessage
+    {
+        public override string ToString()
+        {
+            return "Robot Ready";
+        }
+    }
+
+    public class MoveServo : BaseMessage
     {
         public override string ToString()
         {

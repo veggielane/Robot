@@ -11,5 +11,6 @@ namespace Robot.Micro.Core
         bool IsRunning { get; }
         void Run();
         void Stop();
+
     }
 }

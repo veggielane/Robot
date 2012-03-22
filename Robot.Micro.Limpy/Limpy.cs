@@ -1,4 +1,4 @@
-using System;
+using System.Threading;
 using GHIElectronics.NETMF.FEZ;
 using Microsoft.SPOT.Hardware;
 using Robot.Micro.Core;
@@ -17,8 +17,6 @@ namespace Robot.Micro.Limpy
 {
     public class Limpy:IRobot
     {
-
-
         public IMessageBus Bus { get; private set; }
 
 
@@ -29,7 +27,7 @@ namespace Robot.Micro.Limpy
         readonly LED _led = new LED((Cpu.Pin)FEZ_Pin.Digital.Di13);
         readonly PushButton _button = new PushButton((Cpu.Pin)FEZ_Pin.Interrupt.LDR);
 
-        //private readonly SSC32 _ssc = new SSC32("COM3", 115200);
+        private readonly SSC32 _ssc = new SSC32("COM4", 115200);
         private readonly Bluetooth _bt = new Bluetooth("COM1", 115200);
 
         //kinematics
@@ -49,6 +47,7 @@ namespace Robot.Micro.Limpy
             Bus.AddGateway(new BluetoothGateway(_bt, new ASCIISerialiser()));
             Timer = timer;
             Bus.Subscribe(obj => Debug.Write(obj.ToString()));
+
             _button.Pressed += (pushButton, state) =>
             {
                 _led.Toggle();
@@ -56,10 +55,27 @@ namespace Robot.Micro.Limpy
             };
         }
 
+        private Servo test = new Servo();
+
         public void Run()
         {
             _bt.Connect();
+            _ssc.Connect();
             Timer.Start();
+
+
+            testServos();
+            /*
+            _ssc.AddServo(7, test);
+            Bus.Subscribe(obj =>
+                              {
+                                  test.Angle += Angle.FromDegrees(1);
+                                  _ssc.Move();
+                              }
+
+                );
+            */
+
             _body = new Body { Position = Matrix4.Identity };
             _legLeftFront = new Leg4DOF(_body)
             {
@@ -72,6 +88,10 @@ namespace Robot.Micro.Limpy
                 TibiaInvert = true,
                 FootPosition = Matrix4.Translate(35.0 +52.0, 0.0, -48.0),
             };
+            //_ssc.AddServo(, _leg.CoxaServo);
+            //_ssc.AddServo(1, _leg.FemurServo);
+            //_ssc.AddServo(2, _leg.TibiaServo);
+            //_ssc.Move();
 
             //Bus.OfType(typeof(RemoteMessage)).Subscribe(obj => Move(obj as RemoteMessage));
             //Angle test = Angle.FromRadians(MathsHelper.Pi);
@@ -80,10 +100,7 @@ namespace Robot.Micro.Limpy
 
              //_ssc.Connect();
 
-             //_ssc.AddServo(0, _leg.CoxaServo);
-             //_ssc.AddServo(1, _leg.FemurServo);
-             //_ssc.AddServo(2, _leg.TibiaServo);
-             //_ssc.Move();
+
 
             //setup sensors
 
@@ -95,11 +112,29 @@ namespace Robot.Micro.Limpy
             MainLoop();
         }
 
+        private void testServos()
+        {
+            for (short i = 0; i <= 32; i++)
+            {
+                _ssc.AddServo(i, new Servo());
+                _ssc.Move();
+                Thread.Sleep(100);
+            }
+            
+    
+
+        }
+
+        void _ssc_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+           Debug.WriteLine("ssc data");
+        }
+
         public void Stop()
         {
             
         }
-
+        /*
         private void Move(RemoteMessage remoteMessage)
         {
             switch (remoteMessage.Msg)
@@ -128,7 +163,7 @@ namespace Robot.Micro.Limpy
 
             //_ssc.Move();
         }
-
+        */
 
         private void MainLoop()
         {

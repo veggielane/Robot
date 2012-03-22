@@ -49,6 +49,7 @@ namespace Robot.Micro.Core.Devices
         }
         public void Write(String data)
         {
+            //Debug.Write(data);
             var buffer = Encoding.UTF8.GetBytes(data);
             Write(buffer, 0, buffer.Length);
         }
@@ -79,8 +80,5 @@ namespace Robot.Micro.Core.Devices
             var pinsel1 = new Register(0xE002C004);
             pinsel1.SetBits(0xf << 18); // COM4 is now connected to An3 and An4
         }
-
-
-
     }
 }

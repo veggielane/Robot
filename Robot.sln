@@ -20,6 +20,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Micro.Limpy", "Robot.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Controller.Limpy", "Robot.Controller.Limpy\Robot.Controller.Limpy.csproj", "{BB103B22-513B-4400-9DC9-E011F1B815AC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Micro.Stompy", "Robot.Micro.Stompy\Robot.Micro.Stompy.csproj", "{348240C3-D240-4841-A829-B6A57F7CD338}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Micro.StompyTest", "Robot.Micro.StompyTest\Robot.Micro.StompyTest.csproj", "{C7612B16-F639-4AFE-A225-60513054CFDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFClassLibrary1", "MFClassLibrary1\MFClassLibrary1.csproj", "{FC275F9A-9D39-492C-87C6-94A6FD9C379A}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Robot.vsmdi
@@ -101,6 +107,44 @@ Global
 		{BB103B22-513B-4400-9DC9-E011F1B815AC}.Release|Mixed Platforms.Build.0 = Release|x86
 		{BB103B22-513B-4400-9DC9-E011F1B815AC}.Release|x86.ActiveCfg = Release|x86
 		{BB103B22-513B-4400-9DC9-E011F1B815AC}.Release|x86.Build.0 = Release|x86
+		{348240C3-D240-4841-A829-B6A57F7CD338}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{348240C3-D240-4841-A829-B6A57F7CD338}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{348240C3-D240-4841-A829-B6A57F7CD338}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{348240C3-D240-4841-A829-B6A57F7CD338}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{348240C3-D240-4841-A829-B6A57F7CD338}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{348240C3-D240-4841-A829-B6A57F7CD338}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{348240C3-D240-4841-A829-B6A57F7CD338}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{348240C3-D240-4841-A829-B6A57F7CD338}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{348240C3-D240-4841-A829-B6A57F7CD338}.Release|Any CPU.Build.0 = Release|Any CPU
+		{348240C3-D240-4841-A829-B6A57F7CD338}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{348240C3-D240-4841-A829-B6A57F7CD338}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{348240C3-D240-4841-A829-B6A57F7CD338}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{348240C3-D240-4841-A829-B6A57F7CD338}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{348240C3-D240-4841-A829-B6A57F7CD338}.Release|x86.ActiveCfg = Release|Any CPU
+		{C7612B16-F639-4AFE-A225-60513054CFDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7612B16-F639-4AFE-A225-60513054CFDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7612B16-F639-4AFE-A225-60513054CFDA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C7612B16-F639-4AFE-A225-60513054CFDA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C7612B16-F639-4AFE-A225-60513054CFDA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C7612B16-F639-4AFE-A225-60513054CFDA}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{C7612B16-F639-4AFE-A225-60513054CFDA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C7612B16-F639-4AFE-A225-60513054CFDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7612B16-F639-4AFE-A225-60513054CFDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7612B16-F639-4AFE-A225-60513054CFDA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C7612B16-F639-4AFE-A225-60513054CFDA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C7612B16-F639-4AFE-A225-60513054CFDA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C7612B16-F639-4AFE-A225-60513054CFDA}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{C7612B16-F639-4AFE-A225-60513054CFDA}.Release|x86.ActiveCfg = Release|Any CPU
+		{FC275F9A-9D39-492C-87C6-94A6FD9C379A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC275F9A-9D39-492C-87C6-94A6FD9C379A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC275F9A-9D39-492C-87C6-94A6FD9C379A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FC275F9A-9D39-492C-87C6-94A6FD9C379A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FC275F9A-9D39-492C-87C6-94A6FD9C379A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FC275F9A-9D39-492C-87C6-94A6FD9C379A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC275F9A-9D39-492C-87C6-94A6FD9C379A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC275F9A-9D39-492C-87C6-94A6FD9C379A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FC275F9A-9D39-492C-87C6-94A6FD9C379A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FC275F9A-9D39-492C-87C6-94A6FD9C379A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
