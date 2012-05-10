@@ -1,8 +1,11 @@
 using System;
-using System.Threading.Tasks;
-using Robot.Core.Timing;
-
+#if MICRO
+using Robot.Micro.Core.Threading;
 namespace Robot.Micro.Core.Timing
+#else
+using System.Threading.Tasks;
+namespace Robot.Core.Timing
+#endif
 {
     public class AsyncObservableTimer : ObservableTimer
     {
@@ -22,12 +25,6 @@ namespace Robot.Micro.Core.Timing
         {
             RunningTask = new Task(() => base.Start());
             RunningTask.Start();
-        }
-
-        public override void Stop()
-        {
-            base.Stop();
-            //RunningTask.Stop();
         }
     }
 }

@@ -3,6 +3,7 @@ using Robot.Micro.Core.Devices;
 using Robot.Micro.Core.Maths;
 namespace Robot.Micro.Core.Kinematics
 #else
+using System;
 using Robot.Core.Devices;
 using Robot.Core.Maths;
 namespace Robot.Core.Kinematics
@@ -10,6 +11,86 @@ namespace Robot.Core.Kinematics
 {
     public class Leg3DOF : ILeg
     {
+        private readonly IBody _body;
+
+
+        public Matrix4 Offset { get; set; }
+        public Matrix4 FootPosition { get; set; }
+        public Matrix4 BasePosition
+        {
+            get { return _body.Position * Offset; }
+        }
+
+        public readonly Servo CoxaServo = new Servo
+        {
+            Min = Angle.FromDegrees(-90),
+            Max = Angle.FromDegrees(90),
+            Angle = 0.0
+        };
+
+        public readonly Servo FemurServo = new Servo
+        {
+            Min = Angle.FromDegrees(-90),
+            Max = Angle.FromDegrees(90),
+            Angle = 0.0
+        };
+
+        public readonly Servo TibiaServo = new Servo
+        {
+            Min = Angle.FromDegrees(-90),
+            Max = Angle.FromDegrees(90),
+            Angle = 0.0
+        };
+
+
+        public Leg3DOF(IBody body)
+        {
+            _body = body;
+            //_body.PositionChanged += Inverse;
+        }
+
+        public void Forward()
+        {
+            
+        }
+
+        public double CoxaLength { get; set; }
+        public double FemurLength { get; set; }
+        public double TibiaLength { get; set; }
+
+        public Angle CoxaOffset { get; set; }
+        public Angle FemurOffset { get; set; }
+        public Angle TibiaOffset { get; set; }
+
+        public void Inverse()
+        {
+             /*
+             * Todo: 
+             * - Elbow Up + Elbow Down
+             * - Reduce Calcs
+             * 
+             * Jazar Pg. 331
+             */
+            Vect3 LtoF = FootPosition.ToVector3() - BasePosition.ToVector3();
+
+            var relative = (BasePosition.Rotation() * LtoF.ToMatrix4());
+
+            var angle1 = MathsHelper.Atan2(relative.Y, relative.X);
+
+            var a = (Matrix4.RotateZ(angle1) * Matrix4.Translate(CoxaLength, 0, 0)).ToVector3();
+            var c = relative.ToVector3();
+
+            var atoc = c - a;
+            var angle3 = 2 * MathsHelper.Atan2(MathsHelper.Sqrt(MathsHelper.Pow(FemurLength + TibiaLength, 2) - (MathsHelper.Pow(atoc.X, 2) + MathsHelper.Pow(atoc.Z, 2))),
+                    MathsHelper.Sqrt(MathsHelper.Pow(atoc.X, 2) + MathsHelper.Pow(atoc.Z, 2) - MathsHelper.Pow(FemurLength - TibiaLength, 2)));
+            var angle2 = MathsHelper.Atan2(atoc.Z, atoc.X) + MathsHelper.Atan2(TibiaLength * MathsHelper.Sin(angle3), FemurLength + TibiaLength * MathsHelper.Cos(angle3));
+            CoxaServo.Angle = angle1 + CoxaOffset;
+            FemurServo.Angle = angle2 + FemurOffset;
+            TibiaServo.Angle = angle3 + TibiaOffset;
+        }
+
+
+        /*
         private readonly IBody _body;
         private Matrix4 _basePosition;
         private Matrix4 _footPosition;
@@ -86,13 +167,17 @@ namespace Robot.Core.Kinematics
 
         public void Inverse()
         {
+
+
+
+
             /*
              * Todo: 
              * - Elbow Up + Elbow Down
              * - Reduce Calcs
              * 
              * Jazar Pg. 331
-             */
+             
             var angle1 = MathsHelper.Atan2(_footPosition.Y - BasePosition.Y, _footPosition.X - BasePosition.X);
             var bd = _footPosition.ToVector3() - (BasePosition * Matrix4.RotateZ(CoxaServo.Angle) * Matrix4.Translate(CoxaLength, 0, 0)).ToVector3();
             //Debug.Write(bd.ToString());
@@ -105,10 +190,18 @@ namespace Robot.Core.Kinematics
             CoxaServo.Angle = (CoxaInvert ? -1 : 1) * (angle1 + CoxaOffset);
             FemurServo.Angle = (FemurInvert ? -1 : 1) * (angle2 + FemurOffset);
             TibiaServo.Angle = (TibiaInvert ? -1 : 1) * (angle3 + TibiaOffset);
-
-            Debug.Write(CoxaServo.Angle.ToString());
-            Debug.Write(FemurServo.Angle.ToString());
-            Debug.Write(TibiaServo.Angle.ToString());
+             * 
+            //Debug.Write(CoxaServo.Angle.ToString());
+            //Debug.Write(FemurServo.Angle.ToString());
+            //Debug.Write(TibiaServo.Angle.ToString());
+        }
+         * */
+    }
+    public class Leg4DOF : Leg3DOF
+    {
+        public Leg4DOF(IBody body)
+            : base(body)
+        {
         }
     }
 }

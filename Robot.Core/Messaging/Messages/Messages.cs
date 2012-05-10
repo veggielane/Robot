@@ -1,7 +1,9 @@
 using System;
 #if MICRO
+using Robot.Micro.Core.States;
 namespace Robot.Micro.Core.Messaging.Messages
 #else
+using Robot.Core.States;
 namespace Robot.Core.Messaging.Messages
 #endif
 {
@@ -38,11 +40,27 @@ namespace Robot.Core.Messaging.Messages
         }
     }
 
+    /*
     public class MoveServo : BaseMessage
     {
         public override string ToString()
         {
-            return "Robot Ready";
+            return "Move Servo";
+        }
+    }
+    */
+
+    public class StateRequest : BaseMessage
+    {
+        public IState State { get; private set; }
+        public StateRequest(IState state)
+        {
+            State = state;
+        }
+
+        public override string ToString()
+        {
+            return "State Request: " + State.Name;
         }
     }
 }

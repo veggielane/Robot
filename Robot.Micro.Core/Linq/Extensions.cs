@@ -128,7 +128,7 @@ namespace Robot.Micro.Core.Linq
         public static IEnumerable Select(this IEnumerable items, Predicate action)
         {
             throw new NotImplementedException();
-            return new SelectFilter(items, action);
+            //return new SelectFilter(items, action);
         }
 
 

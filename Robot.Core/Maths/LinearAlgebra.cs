@@ -4,7 +4,7 @@ namespace Robot.Micro.Core.Maths
 namespace Robot.Core.Maths
 #endif
 {
-    public class LinearAlgebra
+    public static class LinearAlgebra
     {
         public static double Map(double x, double inMin, double inMax, double outMin, double outMax)
         {

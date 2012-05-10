@@ -1,9 +1,5 @@
-﻿using System;
-#if MICRO
+﻿#if MICRO
 using Microsoft.SPOT;
-#endif
-
-#if MICRO
 namespace Robot.Micro.Core.Maths
 #else
 namespace Robot.Core.Maths

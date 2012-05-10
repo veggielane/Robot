@@ -1,48 +1,48 @@
 using System;
 using System.Collections;
-using System.Text;
-using System.Threading;
-using System.IO.Ports;
+using Microsoft.SPOT;
 
 namespace Robot.Micro.Core.Devices
 {
-    public class SSC32 : ExtendedSerialPort
+    public class SSC32:Serial
     {
+        public readonly Hashtable Servos = new Hashtable(32);
         private readonly Char _cr = Convert.ToChar(13);
+
         public enum MoveTypes { Normal, Speed, Time };
 
-        public Hashtable Servos = new Hashtable(32);
-
-        public String Version 
-        {
-            get
-            {
-                return IsOpen ? WriteRead("VER") : "";
-            }
-        }
-
-
-        public SSC32(String port, int baudRate):base(port,baudRate)
+        public SSC32(string portName)
+            : base(portName, 115200)
         {
 
         }
+
+        public SSC32(string portName, int baudRate)
+            : base(portName, baudRate)
+        {
+
+        }
+
+        public new void Open()
+        {
+            base.Open();
+            Execute();
+        }
+
 
         public void AddServo(Int16 pin, Servo servo)
         {
             if (Servos.Contains(pin))
             {
                 Servos[pin] = servo;
-            }else
+            }
+            else
             {
                 Servos.Add(pin, servo);
             }
         }
 
-        public void Move()
-        {
-            Move(MoveTypes.Normal, 0);
-        }
-        public void Move(MoveTypes type, Int32 param)
+        public void Move(MoveTypes type = MoveTypes.Normal, Int32 param = 0)
         {
             foreach (DictionaryEntry de in Servos)
             {
@@ -54,36 +54,11 @@ namespace Robot.Micro.Core.Devices
                     Write(" S" + param);
                     break;
                 case MoveTypes.Time:
-                     Write(" T" + param);
+                    Write(" T" + param);
                     break;
                 case MoveTypes.Normal:
                     break;
             }
-            Execute();
-        }
-
-        private void Target(object sender, SerialDataReceivedEventArgs e)
-        {
-            if (e.EventType == SerialData.Chars)
-            {
-                Debug.Write(Read().Trim());
-            }
-        }
-
-        public override bool Connect()
-        {
- 	         base.Connect();
-             Reset();
-             if (Version != null && Version.IndexOf("SSC32-V2.03XE") != -1)
-             {
-                 DataReceived += Target;
-                 return true;
-             }
-             return false;
-        }
-
-        public void Reset()
-        {
             Execute();
         }
 
@@ -92,11 +67,22 @@ namespace Robot.Micro.Core.Devices
             Write(_cr);
         }
 
-        public String WriteRead(String data)
+        public void FreeServos()
         {
-            Write(data + _cr);
-            Thread.Sleep(50);
-            return Read();
+            foreach (DictionaryEntry de in Servos)
+            {
+                Write("#" + de.Key + "P0");
+            }
+            Execute();
+        }
+
+        public new void Dispose()
+        {
+            if (IsOpen)
+            {
+                FreeServos();
+            }
+            base.Dispose();
         }
     }
 }

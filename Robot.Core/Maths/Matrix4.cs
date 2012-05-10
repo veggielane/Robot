@@ -5,7 +5,8 @@ namespace Robot.Micro.Core.Maths
 namespace Robot.Core.Maths
 #endif
 {
-    public struct Matrix4
+
+    public struct Matrix4:IEquatable<Matrix4>
     {
         private readonly Double[][] _data;
         public Matrix4(Double[][] data)
@@ -128,6 +129,27 @@ namespace Robot.Core.Maths
             throw Error.NotImplementedException();
         }
 
+        public Matrix4 Translation()
+        {
+            return new Matrix4(new[]{
+                new[]{  1.0, 0.0, 0.0, this[1, 4] }, 
+                new[]{  0.0, 1.0, 0.0, this[2, 4] },
+                new[]{  0.0, 0.0, 1.0, this[3, 4] },
+                new[]{  0.0, 0.0, 0.0, this[4, 4] }
+            });
+        }
+
+        public Matrix4 Rotation()
+        {
+            return new Matrix4(new[]{
+                new[]{ this[1, 1] , this[1, 2], this[1, 3] , 0  }, 
+                new[]{ this[2, 1] , this[2, 2], this[2, 3] , 0  },
+                new[]{ this[3, 1] , this[3, 2], this[3, 3] , 0  },
+                new[]{ this[4, 1] , this[4, 2], this[4, 3] , 1  }
+            });
+        }
+
+
         public static Matrix4 Translate(Double x, Double y, Double z)
         {
             return new Matrix4(new []{
@@ -185,6 +207,7 @@ namespace Robot.Core.Maths
                 new[]{0.0, 0.0, 0.0, 1.0}
             });
         }
+
 
         public override String ToString()
         {
@@ -250,7 +273,7 @@ namespace Robot.Core.Maths
 
         public bool Equals(Matrix4 other)
         {
-            return Equals(other._data, _data);
+            return this == other;
         }
 
         public override bool Equals(object obj)
@@ -264,5 +287,8 @@ namespace Robot.Core.Maths
         {
             return (_data != null ? _data.GetHashCode() : 0);
         }
+
+
+
     }
 }

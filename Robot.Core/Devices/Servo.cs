@@ -9,11 +9,9 @@ namespace Robot.Core.Devices
     public class Servo
     {
         private Angle _angle = 0.0;
-
         public Angle Min = Angle.FromDegrees(-45.0);
         public Angle Max = Angle.FromDegrees(45.0);
         public Angle Offset = Angle.FromDegrees(0);
-
         public Angle Angle
         {
             get { return _angle; }

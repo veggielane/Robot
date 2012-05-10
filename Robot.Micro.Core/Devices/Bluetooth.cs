@@ -1,32 +1,39 @@
 using System;
-using Robot.Micro.Core.Messaging;
-using Robot.Micro.Core.Messaging.Messages;
+using System.IO.Ports;
+using Microsoft.SPOT;
 
 namespace Robot.Micro.Core.Devices
 {
-    public class Bluetooth : ExtendedSerialPort
+    public class Bluetooth:Serial
     {
-        //public event Message ReceiveMessage;
-        public Bluetooth(String port, int baudRate)
-            : base(port, baudRate)
+        public Bluetooth(string portName)
+            : base(portName)
         {
 
-            /*
-            DataReceived += (sender, e) =>
-            {
-                if (e != null && e.EventType == SerialData.Chars && BytesToRead > 0 && ReceiveMessage != null)
-                    ReceiveMessage(ParseMessage(Read()));
-            };*/
         }
 
-        private IMessage ParseMessage(string data)
+        public Bluetooth(string portName, int baudRate)
+            : base(portName, baudRate)
         {
-            return new DebugMessage(){ Msg =  data };
+
         }
-        /*
-        public void SendMessage(IMessage message)
+
+        public Bluetooth(string portName, int baudRate, Parity parity)
+            : base(portName, baudRate, parity)
         {
-            Write(_json.Encode(message));
-        }*/
+
+        }
+
+        public Bluetooth(string portName, int baudRate, Parity parity, int dataBits)
+            : base(portName, baudRate, parity, dataBits)
+        {
+
+        }
+
+        public Bluetooth(string portName, int baudRate, Parity parity, int dataBits, StopBits stopBits)
+            : base(portName, baudRate, parity, dataBits, stopBits)
+        {
+
+        }
     }
 }

@@ -1,5 +1,9 @@
 using System;
+#if MICRO
+namespace Robot.Micro.Core.Timing
+#else
 namespace Robot.Core.Timing
+#endif
 {
     public class TickTime : ITime
     {
