@@ -18,24 +18,34 @@ namespace Robot.Core.Specs.Kinematics
         {
             body.Position = Matrix4.Identity;
         };
-        private It should_be_equal_to_translation = () => leg.BasePosition.ShouldEqual(Matrix4.Translate(10.0, 0.0, 5.0));
+        private It should_be_equal_to_translation = () => leg.BasePosition.ShouldEqual(Matrix4.Translate(10.0, 0.0, 0.0));
     }
 
-    public class LegInverse : LegContext
+    public class LegInverseHome : LegContext
     {
         //Establish context = () => body.Position = Matrix4.Identity;
         Because of = () =>
         {
-            body.Position = Matrix4.Translate(0, 0, 6.0);
+            body.Position = Matrix4.Translate(0, 0.0, 6.0);
             leg.Inverse();
         };
         private It should_make_coxa_zero = () => leg.CoxaServo.Angle.ShouldEqual(Angle.Zero);
-
         private It should_make_femur_zero = () => leg.FemurServo.Angle.ShouldEqual(Angle.Zero);
-        private It should_make_tibia_zero = () => leg.TibiaServo.Angle.ShouldEqual(Angle.Zero);
+        private It should_make_tibia_zero = () => leg.TibiaServo.Angle.ShouldEqual(Angle.FromDegrees(90));
     }
 
-
+    public class LegInverseAbove : LegContext
+    {
+        //Establish context = () => body.Position = Matrix4.Identity;
+        Because of = () =>
+        {
+            body.Position = Matrix4.Translate(0, 0.0, 10.0);
+            leg.Inverse();
+        };
+        private It should_make_coxa_zero = () => leg.CoxaServo.Angle.ShouldEqual(Angle.Zero);
+        private It should_make_femur_zero = () => leg.FemurServo.Angle.ShouldEqual(Angle.FromDegrees(-30.9008741726517));
+        private It should_make_tibia_zero = () => leg.TibiaServo.Angle.ShouldEqual(Angle.FromDegrees(48.1896851042214));
+    }
 
     public abstract class LegContext
     {
