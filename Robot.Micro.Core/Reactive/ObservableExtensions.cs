@@ -25,6 +25,13 @@ namespace Robot.Micro.Core.Reactive
                 return i == 0;
             });
         }
+        
+        public static IObservable ElementAt(this IObservable source, int index)
+        {
+            var i = 0;
+            return source.Where(o => i++ == index);
+        }
+
         public static IObservable OfType(this IObservable source, Type type)
         {
             return source.Where(o => type != null && o.GetType() == type);

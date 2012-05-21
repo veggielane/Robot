@@ -1,5 +1,6 @@
 using System;
 #if MICRO
+using Robot.Micro.Core.Linq;
 using Robot.Micro.Core.Reactive;
 namespace Robot.Micro.Core.Timing
 {
@@ -8,6 +9,7 @@ namespace Robot.Micro.Core.Timing
         TickTime LastTickTime{get;}
         void Start();
         void Stop();
+        void Delay(TimeSpan delay, Action func);
     }
 }
 #else
@@ -18,6 +20,7 @@ namespace Robot.Core.Timing
         TickTime LastTickTime{get;}
         void Start();
         void Stop();
+        void Delay(TimeSpan delay, Action func);
     }
 }
 #endif

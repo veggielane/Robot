@@ -20,17 +20,6 @@ namespace Robot.Micro.Stompy.States
         {
             _robot = robot;
             Name = "MainState";
-
-            _robot.Timer.Subscribe(t =>
-                                       {
-                                           var x = robot.joy.Position.X.Map(0.0, 1.0, -45.0, 45.0);
-                                           if(x < 0.5 && x > -0.5)
-                                               x = 0;
-                                           _robot.TestServo.Angle = Angle.FromDegrees(x);
-        _robot.SSC32.Move();
-        Debug.Print(x.ToString());
-                                       });
-
         }
 
         public void Start()
@@ -41,6 +30,7 @@ namespace Robot.Micro.Stompy.States
             //var sequence = timer.Sequence(
             //new Event(
             //_robot.SSC32.Move();
+            _robot.Timer.Delay(new TimeSpan(0, 0, 1, 0),() => Debug.Print("test"));
 
         }
 

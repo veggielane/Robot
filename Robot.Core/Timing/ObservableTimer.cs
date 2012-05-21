@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 #if MICRO
 using Microsoft.SPOT;
+using Robot.Micro.Core.Linq;
 using Robot.Micro.Core.Reactive;
 namespace Robot.Micro.Core.Timing
 {
@@ -84,7 +85,19 @@ namespace Robot.Micro.Core.Timing
             else if (_debug) Debug.Write("Cannot stop, Timer already stopped.");
         }
 
+
+        public void Delay(TimeSpan delay, Action func)
+        {/*
+            IDisposable sub;
+            sub = this.SubSample(delay.Milliseconds/TickDelta.Milliseconds).Subscribe((t) =>
+                                                                                    {
+                                                                                        
+                                                                                        sub.Dispose();
+                                                                       }); */
+        }
+
         #endregion
+
     }
 }
 #else
@@ -170,9 +183,12 @@ namespace Robot.Core.Timing
             else if (_debug) Debug.Write("Cannot stop, Timer already stopped.");
         }
 
+        public void Delay(TimeSpan delay, Action func)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }
 #endif
-
-
