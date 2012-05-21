@@ -15,25 +15,12 @@ namespace Robot.Core.Devices
         public Angle Angle
         {
             get { return _angle; }
-            set { _angle = CheckLimits(value); }
+            set { _angle = value.Clamp(Min,Max); }
         }
 
         public int Pulse
         {
-            get { return (int)LinearAlgebra.Map(Angle.Radians, -MathsHelper.PiOverTwo, MathsHelper.PiOverTwo, 600.0, 2400.0); }
-        }
-
-        private Angle CheckLimits(Angle angle)
-        {
-            if(angle > Max)
-            {
-                return Max;
-            }
-            if (angle < Min)
-            {
-                return Min;
-            }
-            return angle;
+            get { return (int) Angle.Radians.Map(-MathsHelper.PiOverTwo, MathsHelper.PiOverTwo, 600.0, 2400.0); }
         }
     }
 }

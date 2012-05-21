@@ -34,7 +34,6 @@ namespace Robot.Core.Maths
         const double AtanQ0 = .89678597403663861962481162e3F;
         #endregion
 
-
         //public static readonly double PI = 3.14159265358979323846F;
         public static readonly double E = 2.71828182845904523536F;
 
@@ -251,6 +250,26 @@ namespace Robot.Core.Maths
             return (value * d);
         }
 
+        public static double Map(double x, double inMin, double inMax, double outMin, double outMax)
+        {
+            return (x - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+        }
 
+        public static double Clamp(double x, double min, double max)
+        {
+#if MICRO
+            if (x > max)
+            {
+                return max;
+            }
+            if (x < min)
+            {
+                return min;
+            }
+            return x;
+#else
+            return Math.Max(Math.Min(x, max), min);
+#endif
+        }
     }
 }

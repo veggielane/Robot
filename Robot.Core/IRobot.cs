@@ -21,5 +21,7 @@ namespace Robot.Core
         void Run();
         void Stop();
 
+        void Enable();
+        void Disable();
     }
 }

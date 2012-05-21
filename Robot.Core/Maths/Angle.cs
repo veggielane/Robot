@@ -1,4 +1,6 @@
-﻿#if MICRO
+﻿using System;
+
+#if MICRO
 using Microsoft.SPOT;
 namespace Robot.Micro.Core.Maths
 #else
@@ -32,6 +34,7 @@ namespace Robot.Core.Maths
         {
             return new Angle(degrees * DegToRad);
         }
+
 
         public override string ToString()
         {
@@ -69,6 +72,36 @@ namespace Robot.Core.Maths
         public static implicit operator double(Angle angle)
         {
             return angle.Radians;
+        }
+
+        public static bool operator ==(Angle a, Angle b)
+        {
+            return MathsHelper.NearlyEquals(a.Radians, b.Radians);
+
+        }
+
+        public static bool operator !=(Angle a, Angle b)
+        {
+            return !MathsHelper.NearlyEquals(a.Radians, b.Radians);
+        }
+
+        public override bool Equals(Object obj)
+        {
+            if (obj == null || obj.GetType() != GetType() || !((obj is Angle)))
+            {
+                return false;
+            }
+            return Equals((Angle)obj);
+        }
+
+        public bool Equals(Angle a)
+        {
+            return this == a;
+        }
+
+        public override int GetHashCode()
+        {
+            return (int)Radians;
         }
     }
 }

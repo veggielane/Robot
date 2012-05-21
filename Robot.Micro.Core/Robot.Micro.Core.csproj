@@ -33,6 +33,9 @@
     <Compile Include="..\Robot.Core\Debug.cs">
       <Link>Debug.cs</Link>
     </Compile>
+    <Compile Include="..\Robot.Core\Devices\Servo.cs">
+      <Link>Devices\Servo.cs</Link>
+    </Compile>
     <Compile Include="..\Robot.Core\Environment.cs">
       <Link>Environment.cs</Link>
     </Compile>
@@ -59,9 +62,6 @@
     </Compile>
     <Compile Include="..\Robot.Core\Maths\Extensions.cs">
       <Link>Maths\Extensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Robot.Core\Maths\LinearAlgebra.cs">
-      <Link>Maths\LinearAlgebra.cs</Link>
     </Compile>
     <Compile Include="..\Robot.Core\Maths\MathsHelper.cs">
       <Link>Maths\MathsHelper.cs</Link>
@@ -107,8 +107,8 @@
     </Compile>
     <Compile Include="Devices\Bluetooth.cs" />
     <Compile Include="Devices\Button.cs" />
+    <Compile Include="Devices\Joystick.cs" />
     <Compile Include="Devices\LED7R.cs" />
-    <Compile Include="Devices\Servo.cs" />
     <Compile Include="Devices\Serial.cs" />
     <Compile Include="Devices\SSC32.cs" />
     <Compile Include="Linq\Delegates.cs" />
@@ -131,6 +131,7 @@
     <Reference Include="GHIElectronics.OSH.NETMF.Native, Version=4.1.2.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SPOT.Hardware" />
     <Reference Include="Microsoft.SPOT.Hardware.SerialPort" />
+    <Reference Include="Microsoft.SPOT.IO" />
     <Reference Include="Microsoft.SPOT.Native">
     </Reference>
   </ItemGroup>

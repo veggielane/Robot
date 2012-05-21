@@ -6,7 +6,7 @@ namespace Robot.Core.Maths
 #endif
 {
 
-    public struct Matrix4:IEquatable<Matrix4>
+    public struct Matrix4
     {
         private readonly Double[][] _data;
         public Matrix4(Double[][] data)

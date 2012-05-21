@@ -5,7 +5,7 @@ namespace Robot.Micro.Core.Maths
 namespace Robot.Core.Maths
 #endif
 {
-    public class Vect3 : IComparable
+    public class Vect3
     {
         public double X { get; private set; }
         public double Y { get; private set; }
@@ -215,26 +215,18 @@ namespace Robot.Core.Maths
 #endif
         }
 
-        public int CompareTo(object obj)
+        public bool Equals(Vect3 a)
         {
-            if (obj is Vect3)
-            {
-                var otherVector = (Vect3)obj;
-                if (this < otherVector) { return -1; }
-                if (this > otherVector) { return 1; }
-                return 0;
-            }
-            throw Error.ArgumentException("");
+            return this == a;
         }
 
-        public override bool Equals(object other)
+        public override bool Equals(object obj)
         {
-            if (other is Vect3)
+            if (obj == null || obj.GetType() != GetType() || !(obj is Vect3))
             {
-                var otherVector = (Vect3)other;
-                return otherVector == this;
+                return false;
             }
-            return false;
+            return Equals(obj as Vect3);
         }
 
     }

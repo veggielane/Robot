@@ -52,7 +52,6 @@
     <Compile Include="Kinematics\ILeg.cs" />
     <Compile Include="Kinematics\Leg3DOF.cs" />
     <Compile Include="Maths\Angle.cs" />
-    <Compile Include="Maths\LinearAlgebra.cs" />
     <Compile Include="Maths\MathsHelper.cs" />
     <Compile Include="Maths\Matrix4.cs" />
     <Compile Include="Maths\Extensions.cs" />
@@ -69,6 +68,7 @@
     <Compile Include="Timing\ITime.cs" />
     <Compile Include="Timing\ITimer.cs" />
     <Compile Include="Timing\ObservableTimer.cs" />
+    <Compile Include="Timing\Scheduler.cs" />
     <Compile Include="Timing\TickTime.cs" />
   </ItemGroup>
   <ItemGroup />

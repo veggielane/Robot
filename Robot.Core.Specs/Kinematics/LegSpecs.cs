@@ -23,7 +23,6 @@ namespace Robot.Core.Specs.Kinematics
 
     public class LegInverseHome : LegContext
     {
-        //Establish context = () => body.Position = Matrix4.Identity;
         Because of = () =>
         {
             body.Position = Matrix4.Translate(0, 0.0, 6.0);
@@ -31,12 +30,11 @@ namespace Robot.Core.Specs.Kinematics
         };
         private It should_make_coxa_zero = () => leg.CoxaServo.Angle.ShouldEqual(Angle.Zero);
         private It should_make_femur_zero = () => leg.FemurServo.Angle.ShouldEqual(Angle.Zero);
-        private It should_make_tibia_zero = () => leg.TibiaServo.Angle.ShouldEqual(Angle.FromDegrees(90));
+        private It should_make_tibia_zero = () => leg.TibiaServo.Angle.ShouldEqual(Angle.FromDegrees(0));
     }
 
-    public class LegInverseAbove : LegContext
+    public class LegInverseBodyAbove : LegContext
     {
-        //Establish context = () => body.Position = Matrix4.Identity;
         Because of = () =>
         {
             body.Position = Matrix4.Translate(0, 0.0, 10.0);
@@ -44,7 +42,19 @@ namespace Robot.Core.Specs.Kinematics
         };
         private It should_make_coxa_zero = () => leg.CoxaServo.Angle.ShouldEqual(Angle.Zero);
         private It should_make_femur_zero = () => leg.FemurServo.Angle.ShouldEqual(Angle.FromDegrees(-30.9008741726517));
-        private It should_make_tibia_zero = () => leg.TibiaServo.Angle.ShouldEqual(Angle.FromDegrees(48.1896851042214));
+        private It should_make_tibia_zero = () => leg.TibiaServo.Angle.ShouldEqual(Angle.FromDegrees(-41.8103149));
+    }
+
+    public class LegInverseBodyBelow : LegContext
+    {
+        Because of = () =>
+        {
+            body.Position = Matrix4.Translate(0, 0.0, 4.0);
+            leg.Inverse();
+        };
+        private It should_make_coxa_zero = () => leg.CoxaServo.Angle.ShouldEqual(Angle.Zero);
+        private It should_make_femur_zero = () => leg.FemurServo.Angle.ShouldEqual(Angle.FromDegrees(14.4381484204));
+        private It should_make_tibia_zero = () => leg.TibiaServo.Angle.ShouldEqual(Angle.FromDegrees(12.0246992));
     }
 
     public abstract class LegContext
@@ -63,7 +73,7 @@ namespace Robot.Core.Specs.Kinematics
                 TibiaLength = 6.0,
                 //FemurInvert = true,
 
-                //TibiaOffset = Angle.FromDegrees(-90.0),
+                TibiaOffset = Angle.FromDegrees(-90.0),
                 //TibiaInvert = true,
                 FootPosition = Matrix4.Translate(23, 0.0, 0),
             };

@@ -41,6 +41,19 @@ namespace Robot.Core.Maths
             return MathsHelper.Tan(a);
         }
 
+        public static double Map(this double x, double inMin, double inMax, double outMin, double outMax)
+        {
+            return MathsHelper.Map(x, inMin, inMax, outMin, outMax);
+        }
+
+        public static double Clamp(this double x, double min, double max)
+        {
+            return MathsHelper.Clamp(x, min, max);
+        }
+        public static Angle Clamp(this Angle x, double min, double max)
+        {
+            return MathsHelper.Clamp(x, min, max);
+        }
 
     }
 }

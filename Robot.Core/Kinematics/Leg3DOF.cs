@@ -81,9 +81,10 @@ namespace Robot.Core.Kinematics
             var c = relative.ToVector3();
 
             var atoc = c - a;
-            var angle3 = 2 * MathsHelper.Atan2(MathsHelper.Sqrt(MathsHelper.Pow(FemurLength + TibiaLength, 2) - (MathsHelper.Pow(atoc.X, 2) + MathsHelper.Pow(atoc.Z, 2))),
-                    MathsHelper.Sqrt(MathsHelper.Pow(atoc.X, 2) + MathsHelper.Pow(atoc.Z, 2) - MathsHelper.Pow(FemurLength - TibiaLength, 2)));
-            var angle2 = MathsHelper.Atan2(atoc.Z, atoc.X) + MathsHelper.Atan2(TibiaLength * MathsHelper.Sin(angle3), FemurLength + TibiaLength * MathsHelper.Cos(angle3));
+            var angle3 = 2 * MathsHelper.Atan2(((FemurLength + TibiaLength).Pow(2) - (atoc.X.Pow(2) +atoc.Z.Pow(2))).Sqrt(),
+                    (atoc.X.Pow(2) + atoc.Z.Pow(2) - (FemurLength - TibiaLength).Pow(2)).Sqrt());
+
+            var angle2 = MathsHelper.Atan2(atoc.Z, atoc.X) + MathsHelper.Atan2(TibiaLength * (angle3).Sin(), FemurLength + TibiaLength * angle3.Cos());
             CoxaServo.Angle = angle1 + CoxaOffset;
             FemurServo.Angle = angle2 + FemurOffset;
             TibiaServo.Angle = angle3 + TibiaOffset;
