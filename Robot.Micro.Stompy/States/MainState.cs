@@ -26,11 +26,11 @@ namespace Robot.Micro.Stompy.States
                                            var x = robot.joy.Position.X.Map(0.0, 1.0, -45.0, 45.0);
                                            if(x < 0.5 && x > -0.5)
                                                x = 0;
-                                           _robot.TestServo.Angle = x;
+                                           _robot.TestServo.Angle = Angle.FromDegrees(x);
         _robot.SSC32.Move();
-                                                     });
+        Debug.Print(x.ToString());
+                                       });
 
-            _robot.Timer.Subscribe(t => Debug.Print(robot.joy.Position.X.Map(0.0, 1.0, -45.0, 45.0).ToString()));
         }
 
         public void Start()
