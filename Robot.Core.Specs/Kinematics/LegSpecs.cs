@@ -75,7 +75,7 @@ namespace Robot.Core.Specs.Kinematics
 
                 TibiaOffset = Angle.FromDegrees(-90.0),
                 //TibiaInvert = true,
-                FootPosition = Matrix4.Translate(23, 0.0, 0),
+                FootPosition = new Vect3(23, 0.0, 0),
             };
         };
     }

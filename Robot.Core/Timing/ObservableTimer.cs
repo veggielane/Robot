@@ -22,7 +22,7 @@ namespace Robot.Micro.Core.Timing
         private readonly bool _debug;
 
         public ObservableTimer()
-            : this(new TimeSpan(0, 0, 0, 0, 100))
+            : this(new TimeSpan(0, 0, 0, 0, 1))
         {
         }
 

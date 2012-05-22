@@ -44,7 +44,10 @@ namespace Robot.Micro.Core.Reactive
         {
             lock (_lock)
                 foreach (var sub in _subscribers)
-                    ((IObserver) sub).OnNext(value);
+                {
+                    if (sub != null) ((IObserver)sub).OnNext(value);
+                }
+                    
         }
 
         public void OnCompleted()

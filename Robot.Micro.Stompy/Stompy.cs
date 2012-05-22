@@ -8,6 +8,7 @@ using Robot.Micro.Core.Messaging;
 using Robot.Micro.Core.Messaging.Messages;
 using Robot.Micro.Core.Timing;
 using Robot.Micro.Core.States;
+using Robot.Micro.Stompy.Legs;
 using Robot.Micro.Stompy.States;
 using Robot.Micro.Core.Reactive;
 using Button = Robot.Micro.Core.Devices.Button;
@@ -33,16 +34,13 @@ namespace Robot.Micro.Stompy
         public Button Button = new Button(FEZHydra.Pin.PC9, FEZHydra.Pin.PC10);
 
         //kinematics
-        private readonly IBody _body = new Body();
-
-        private ILeg _legLeftFront;
-        private ILeg _legLeftMiddle;
-        private ILeg _legLeftRear;
-
-        private ILeg _legRightFront;
-        private ILeg _legRightMiddle;
-        private ILeg _legRightRear;
-
+        public IBody Body;
+        public readonly Leg3DOF LegLeftFront;
+        public readonly Leg3DOF LegLeftMiddle;
+        public readonly Leg3DOF LegLeftRear;
+        public readonly Leg3DOF LegRightFront;
+        public readonly Leg3DOF LegRightMiddle;
+        public readonly Leg3DOF LegRightRear;
 
         private readonly Servo _leftRotateServo = new Servo
         {
@@ -58,19 +56,14 @@ namespace Robot.Micro.Stompy
             Angle = 0.0
         };
 
+
+
         private readonly Servo _leftFrontExtra = new Servo{Angle = 0.0};
         private readonly Servo _leftMiddleExtra = new Servo { Angle = 0.0 };
         private readonly Servo _leftRearExtra = new Servo { Angle = 0.0 };
         private readonly Servo _rightFrontExtra = new Servo { Angle = 0.0 };
         private readonly Servo _rightMiddleExtra = new Servo { Angle = 0.0 };
         private readonly Servo _rightRearExtra = new Servo { Angle = 0.0 };
-
-        public readonly Servo TestServo = new Servo
-        {
-            Min = Angle.FromDegrees(-90),
-            Max = Angle.FromDegrees(90),
-            Angle = 0.0
-        };
 
         public Stompy(IMessageBus bus, ITimer timer)
         {
@@ -80,7 +73,14 @@ namespace Robot.Micro.Stompy
             Bus.Subscribe(obj => Debug.Write(obj.ToString()));
             Bus.OfType(typeof(StateRequest)).Subscribe(m => SetState(((StateRequest)m).State));
 
-            
+
+            Body = new Body{Position = Matrix4.Translate(0.0, 0.0, 6.0)};
+            LegLeftFront = new LegLeftFront(Body);
+            //LegLeftMiddle = new LegLeftMiddle(Body);
+            //LegLeftRear = new LegLeftRear(Body);
+            //LegRightFront = new LegRightFront(Body);
+            //LegRightMiddle = new LegRightMiddle(Body);
+            //LegRightRear = new LegRightRear(Body);
 
             //InitLegs();
         }
@@ -103,13 +103,9 @@ namespace Robot.Micro.Stompy
             Timer.Start();
             _bluetooth.Open();
             SSC32.Open();
-            SSC32.AddServo(17, TestServo);
-            SSC32.Move();
             SetState(new IdleState(this));
             Bus.Add(new RobotReadyMessage());
         }
-
-
 
         public void Dispose()
         {
@@ -123,97 +119,30 @@ namespace Robot.Micro.Stompy
 
         public void Enable()
         {
-
-        }
-
-        public void Disable()
-        {
-            SSC32.FreeServos();
-        }
-
-        private void InitLegs()
-        {
-            _legLeftFront = new Leg3DOF(_body)
-            {
-                Offset = Matrix4.Translate(0.0, 0.0, 0.0),
-                CoxaLength = 35.0,
-                FemurLength = 52.0,
-                //FemurInvert = true,
-                TibiaLength = 48.0,
-                TibiaOffset = Angle.FromDegrees(-90.0),
-                //TibiaInvert = true,
-                FootPosition = Matrix4.Translate(35.0 + 52.0, 0.0, -48.0),
-            };
-
-            _legLeftMiddle = new Leg3DOF(_body)
-            {
-                Offset = Matrix4.Translate(0.0, 0.0, 0.0),
-                CoxaLength = 35.0,
-                FemurLength = 52.0,
-                //FemurInvert = true,
-                TibiaLength = 48.0,
-                TibiaOffset = Angle.FromDegrees(-90.0),
-                //TibiaInvert = true,
-                FootPosition = Matrix4.Translate(35.0 + 52.0, 0.0, -48.0),
-            };
-
-            _legLeftRear = new Leg3DOF(_body)
-            {
-                Offset = Matrix4.Translate(0.0, 0.0, 0.0),
-                CoxaLength = 35.0,
-                FemurLength = 52.0,
-                //FemurInvert = true,
-                TibiaLength = 48.0,
-                TibiaOffset = Angle.FromDegrees(-90.0),
-                //TibiaInvert = true,
-                FootPosition = Matrix4.Translate(35.0 + 52.0, 0.0, -48.0),
-            };
-
-            _legRightFront = new Leg3DOF(_body)
-            {
-                Offset = Matrix4.Translate(0.0, 0.0, 0.0),
-                CoxaLength = 35.0,
-                FemurLength = 52.0,
-                //FemurInvert = true,
-                TibiaLength = 48.0,
-                TibiaOffset = Angle.FromDegrees(-90.0),
-                //TibiaInvert = true,
-                FootPosition = Matrix4.Translate(35.0 + 52.0, 0.0, -48.0),
-            };
-
-            _legRightMiddle = new Leg3DOF(_body)
-            {
-                Offset = Matrix4.Translate(0.0, 0.0, 0.0),
-                CoxaLength = 35.0,
-                FemurLength = 52.0,
-                //FemurInvert = true,
-                TibiaLength = 48.0,
-                TibiaOffset = Angle.FromDegrees(-90.0),
-                //TibiaInvert = true,
-                FootPosition = Matrix4.Translate(35.0 + 52.0, 0.0, -48.0),
-            };
-
-            _legRightRear = new Leg3DOF(_body)
-            {
-                Offset = Matrix4.Translate(0.0, 0.0, 0.0),
-                CoxaLength = 35.0,
-                FemurLength = 52.0,
-                //FemurInvert = true,
-                TibiaLength = 48.0,
-                TibiaOffset = Angle.FromDegrees(-90.0),
-                //TibiaInvert = true,
-                FootPosition = Matrix4.Translate(35.0 + 52.0, 0.0, -48.0),
-            };
-
+            Debug.WriteLine(LegLeftFront.CoxaServo.Angle.ToString());
+            Debug.WriteLine(LegLeftFront.FemurServo.Angle.ToString());
+            Debug.WriteLine(LegLeftFront.TibiaServo.Angle.ToString());
             SSC32.AddServo(0, _leftRotateServo);
             SSC32.AddServo(16, _rightRotateServo);
 
+            SSC32.AddServo(4, LegLeftFront.CoxaServo);
+            SSC32.AddServo(5, LegLeftFront.FemurServo);
+            SSC32.AddServo(6, _leftFrontExtra);
+            SSC32.AddServo(7, LegLeftFront.TibiaServo);
+            SSC32.Move();
+            /*
             SSC32.AddServo(6, _leftFrontExtra);
             SSC32.AddServo(10, _leftMiddleExtra);
             SSC32.AddServo(14, _leftRearExtra);
             SSC32.AddServo(22, _rightFrontExtra);
             SSC32.AddServo(26, _rightMiddleExtra);
             SSC32.AddServo(30, _rightRearExtra);
+             */
+        }
+
+        public void Disable()
+        {
+            SSC32.FreeServos();
         }
     }
 }

@@ -18,5 +18,6 @@ namespace Robot.Core
         {
             Write(msg + Environment.NewLine);
         }
+
     }
 }

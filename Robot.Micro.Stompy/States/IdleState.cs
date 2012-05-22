@@ -25,6 +25,7 @@ namespace Robot.Micro.Stompy.States
         private IDisposable _timerSub;
         public void Start()
         {
+            //_robot.Disable();
             _robot.Button.LED = true;
             _timerSub = _robot.Timer.SubSample(10).Subscribe(t => _robot.LED[6] = !_robot.LED[6]);
             _buttonSub = _robot.Button.Where(e => ((ButtonEvent)e).State == ButtonState.Released).Subscribe(e => _robot.Bus.Add(new StateRequest(new MainState(_robot))));

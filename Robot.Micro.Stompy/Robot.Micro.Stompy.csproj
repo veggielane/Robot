@@ -30,6 +30,12 @@
   </PropertyGroup>
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
+    <Compile Include="Legs\LegRightRear.cs" />
+    <Compile Include="Legs\LegRightMiddle.cs" />
+    <Compile Include="Legs\LegRightFront.cs" />
+    <Compile Include="Legs\LegLeftRear.cs" />
+    <Compile Include="Legs\LegLeftMiddle.cs" />
+    <Compile Include="Legs\LegLeftFront.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="States\IdleState.cs" />

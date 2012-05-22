@@ -9,7 +9,8 @@ namespace Robot.Core.Kinematics
     public interface ILeg
     {
         Matrix4 BasePosition { get; }
-        Matrix4 FootPosition { get; set; }
+        Vect3 FootPosition { get; set; }
+        Vect3 FootOffset { get; set; }
         void Forward();
         void Inverse();
     }

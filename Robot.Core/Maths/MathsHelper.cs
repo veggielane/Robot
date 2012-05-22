@@ -181,30 +181,30 @@ namespace Robot.Core.Maths
         public static Angle Atan2(Double y, Double x)
         {
 #if MICRO
-            if ((x + y) == x)
+            if ((y + x) == y)
             {
-                if ((x == 0F) & (y == 0F)) return 0F;
+                if ((y == 0F) & (x == 0F)) return 0F;
 
-                if (x >= 0.0F)
+                if (y >= 0.0F)
                     return PIo2;
                 else
                     return (-PIo2);
             }
-            else if (y < 0.0F)
+            else if (x < 0.0F)
             {
-                if (x >= 0.0F)
-                    return ((PIo2 * 2) - Atans((-x) / y));
+                if (y >= 0.0F)
+                    return ((PIo2 * 2) - Atans((-y) / x));
                 else
-                    return (((-PIo2) * 2) + Atans(x / y));
+                    return (((-PIo2) * 2) + Atans(y / x));
 
             }
-            else if (x > 0.0F)
+            else if (y > 0.0F)
             {
-                return (Atans(x / y));
+                return (Atans(y / x));
             }
             else
             {
-                return (-Atans((-x) / y));
+                return (-Atans((-y) / x));
             }
 #else
             return Math.Atan2(y, x);
