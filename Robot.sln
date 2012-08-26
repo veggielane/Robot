@@ -20,6 +20,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Raspberry.Stompy", "Robot.Raspberry.Stompy\Robot.Raspberry.Stompy.csproj", "{3694EE79-EF76-4ABC-A406-BE7BED634D34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Stompy", "Robot.Stompy\Robot.Stompy.csproj", "{F9BF8098-0B15-495E-A9BF-2CEEFAB2F923}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -112,6 +116,26 @@ Global
 		{A933B0E8-8499-45CF-ADB9-58C60DFD8F0B}.Release|Mixed Platforms.Build.0 = Release|x86
 		{A933B0E8-8499-45CF-ADB9-58C60DFD8F0B}.Release|x86.ActiveCfg = Release|x86
 		{A933B0E8-8499-45CF-ADB9-58C60DFD8F0B}.Release|x86.Build.0 = Release|x86
+		{3694EE79-EF76-4ABC-A406-BE7BED634D34}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{3694EE79-EF76-4ABC-A406-BE7BED634D34}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{3694EE79-EF76-4ABC-A406-BE7BED634D34}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{3694EE79-EF76-4ABC-A406-BE7BED634D34}.Debug|x86.ActiveCfg = Debug|x86
+		{3694EE79-EF76-4ABC-A406-BE7BED634D34}.Debug|x86.Build.0 = Debug|x86
+		{3694EE79-EF76-4ABC-A406-BE7BED634D34}.Release|Any CPU.ActiveCfg = Release|x86
+		{3694EE79-EF76-4ABC-A406-BE7BED634D34}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{3694EE79-EF76-4ABC-A406-BE7BED634D34}.Release|Mixed Platforms.Build.0 = Release|x86
+		{3694EE79-EF76-4ABC-A406-BE7BED634D34}.Release|x86.ActiveCfg = Release|x86
+		{3694EE79-EF76-4ABC-A406-BE7BED634D34}.Release|x86.Build.0 = Release|x86
+		{F9BF8098-0B15-495E-A9BF-2CEEFAB2F923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9BF8098-0B15-495E-A9BF-2CEEFAB2F923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9BF8098-0B15-495E-A9BF-2CEEFAB2F923}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F9BF8098-0B15-495E-A9BF-2CEEFAB2F923}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F9BF8098-0B15-495E-A9BF-2CEEFAB2F923}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F9BF8098-0B15-495E-A9BF-2CEEFAB2F923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9BF8098-0B15-495E-A9BF-2CEEFAB2F923}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9BF8098-0B15-495E-A9BF-2CEEFAB2F923}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F9BF8098-0B15-495E-A9BF-2CEEFAB2F923}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F9BF8098-0B15-495E-A9BF-2CEEFAB2F923}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

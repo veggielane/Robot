@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{EF9EADC2-252E-42BD-9D9D-1A9A227C493B}</ProjectGuid>
+    <ProjectGuid>{F9BF8098-0B15-495E-A9BF-2CEEFAB2F923}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Robot.Core</RootNamespace>
-    <AssemblyName>Robot.Core</AssemblyName>
+    <RootNamespace>Robot.Stompy</RootNamespace>
+    <AssemblyName>Robot.Stompy</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,8 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.CoreEx, Version=1.0.2856.104, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Reactive, Version=1.0.2856.104, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,42 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Debug.cs" />
-    <Compile Include="Devices\SSC32.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Devices\TextStar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Devices\Servo.cs" />
-    <Compile Include="Environment.cs" />
-    <Compile Include="Error.cs" />
-    <Compile Include="IRobot.cs" />
-    <Compile Include="Kinematics\Body.cs" />
-    <Compile Include="Kinematics\IBody.cs" />
-    <Compile Include="Kinematics\ILeg.cs" />
-    <Compile Include="Kinematics\Leg3DOF.cs" />
-    <Compile Include="Maths\Angle.cs" />
-    <Compile Include="Maths\MathsHelper.cs" />
-    <Compile Include="Maths\Matrix4.cs" />
-    <Compile Include="Maths\Extensions.cs" />
-    <Compile Include="Maths\Quat.cs" />
-    <Compile Include="Maths\Vect3.cs" />
-    <Compile Include="Messaging\IMessage.cs" />
-    <Compile Include="Messaging\IMessageBus.cs" />
-    <Compile Include="Messaging\MessageBus.cs" />
-    <Compile Include="Messaging\Messages\Messages.cs" />
+    <Compile Include="StompyRobot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reactive\Observable.cs" />
-    <Compile Include="States\IState.cs" />
-    <Compile Include="Timing\AsyncObservableTimer.cs" />
-    <Compile Include="Timing\ITime.cs" />
-    <Compile Include="Timing\ITimer.cs" />
-    <Compile Include="Timing\ObservableTimer.cs" />
-    <Compile Include="Timing\Scheduler.cs" />
-    <Compile Include="Timing\TickTime.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Robot.Core\Robot.Core.csproj">
+      <Project>{EF9EADC2-252E-42BD-9D9D-1A9A227C493B}</Project>
+      <Name>Robot.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
