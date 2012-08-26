@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO.Ports;
-using System.Linq;
-using System.Text;
 
 namespace Robot.Core.Devices
 {
@@ -14,7 +11,13 @@ namespace Robot.Core.Devices
         public TextStar(string port)
             : base(port, 115200)
         {
-            DataReceived += new SerialDataReceivedEventHandler(TextStarDataReceived);
+            DataReceived += TextStarDataReceived;
+        }
+
+        public new void Open()
+        {
+            base.Open();
+            Clear();
         }
 
         void TextStarDataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -28,6 +31,11 @@ namespace Robot.Core.Devices
             Write(bytes, 0, bytes.Length);
         }
 
+        public void Display(object o)
+        {
+            Clear();
+            Write(o.ToString());
+        }
 
 
         public void MoveCursor(CursorControl cursor)

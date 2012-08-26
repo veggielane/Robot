@@ -27,7 +27,7 @@ namespace Robot.Core.Messaging.Messages
         }
         public override string ToString()
         {
-            return "Debug Message: " + Msg;
+            return "Debug: " + Msg;
         }
     }
 
@@ -52,15 +52,44 @@ namespace Robot.Core.Messaging.Messages
 
     public class StateRequest : BaseMessage
     {
+        public readonly Type StateType;
+        public StateRequest(Type t)
+        {
+            StateType = t;
+        }
+        public static StateRequest Create<T>()
+        {
+            return new StateRequest(typeof (T));
+        }
+    }
+
+
+    public class StateStarting : BaseMessage
+    {
         public IState State { get; private set; }
-        public StateRequest(IState state)
+        public StateStarting(IState state)
         {
             State = state;
         }
 
         public override string ToString()
         {
-            return "State Request: " + State.Name;
+            return "State Start: " + State.Name;
         }
     }
+
+    public class StateStopping : BaseMessage
+    {
+        public IState State { get; private set; }
+        public StateStopping(IState state)
+        {
+            State = state;
+        }
+
+        public override string ToString()
+        {
+            return "State Stop: " + State.Name;
+        }
+    }
+
 }
