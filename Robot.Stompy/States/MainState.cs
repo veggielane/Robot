@@ -7,12 +7,12 @@ namespace Robot.Stompy.States
 {
     class MainState:IState
     {
-        private readonly StompyRobot _stompyRobot;
+        private readonly StompyRobot _robot;
         public string Name { get; private set; }
 
-        public MainState(StompyRobot stompyRobot)
+        public MainState(StompyRobot robot)
         {
-            _stompyRobot = stompyRobot;
+            _robot = robot;
             Name = "Main";
         }
 
@@ -23,7 +23,7 @@ namespace Robot.Stompy.States
 
         public void Start()
         {
-
+            _robot.Bus.Add(new DebugMessage("test"));
         }
 
         public void Stop()

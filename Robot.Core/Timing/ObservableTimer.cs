@@ -1,4 +1,5 @@
 using System;
+using System.Reactive.Linq;
 using System.Threading;
 #if MICRO
 using Microsoft.SPOT;
@@ -101,6 +102,7 @@ namespace Robot.Micro.Core.Timing
     }
 }
 #else
+using Robot.Core.Extensions;
 using Robot.Core.Reactive;
 namespace Robot.Core.Timing
 {
@@ -185,7 +187,7 @@ namespace Robot.Core.Timing
 
         public void Delay(TimeSpan delay, Action func)
         {
-            throw new NotImplementedException();
+            this.SubSample(delay.Milliseconds/TickDelta.Milliseconds).Skip(1).Subscribe((t) => func());
         }
 
         #endregion

@@ -25,6 +25,13 @@ namespace Robot.Core.Messaging.Messages
         {
             Msg = "";
         }
+
+        public DebugMessage(string msg)
+        {
+            Msg = msg;
+        }
+
+
         public override string ToString()
         {
             return "Debug: " + Msg;
@@ -60,6 +67,10 @@ namespace Robot.Core.Messaging.Messages
         public static StateRequest Create<T>()
         {
             return new StateRequest(typeof (T));
+        }
+        public override string ToString()
+        {
+            return "State Request: " + StateType;
         }
     }
 
