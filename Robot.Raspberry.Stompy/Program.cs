@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO.Ports;
 using System.Reactive.Linq;
 using Robot.Core.Devices;
 using Robot.Core.Messaging;
@@ -14,6 +15,7 @@ namespace Robot.Raspberry.Stompy
         {
            // var lcd = new TextStar("/dev/ttyAMA0");
             //lcd.Open();
+            
             using (var stompy = new StompyRobot(new MessageBus(), new AsyncObservableTimer(), new SSC32("/dev/ttyUSB0")))
             {
                 stompy.Bus.Subscribe(Console.WriteLine);

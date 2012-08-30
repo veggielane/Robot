@@ -29,7 +29,7 @@ namespace Robot.Stompy.States
             //_stompyRobot.Timer.Delay(new TimeSpan(0, 0, 2), () => Console.WriteLine("test"));
             //_stompyRobot.Timer.SubSample().Subscribe();
 
-            _stompyRobot.Timer.SubSample(100).Skip(1).Take(1).Subscribe(t =>_stompyRobot.Bus.Add( StateRequest.Create<MainState>()));
+            _stompyRobot.Timer.SubSample(50).Skip(1).Take(1).Subscribe(t =>_stompyRobot.Bus.Add( StateRequest.Create<MainState>()));
         }
 
         public void Stop()

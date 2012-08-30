@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Debug.cs" />
+    <Compile Include="Devices\IServoController.cs" />
     <Compile Include="Devices\SSC32.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -3,71 +3,68 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
-using System.Text;
 
 namespace Robot.Core.Devices
 {
-    public class SSC32:SerialPort
+    public class SSC32:SerialPort,IServoController
     {
-        public readonly Hashtable Servos = new Hashtable(32);
-
-        public enum MoveTypes { Normal, Speed, Time };
+        public IDictionary<int, Servo> Servos { get; private set; }
 
         public SSC32(string portName)
             : base(portName, 115200)
         {
-
+            Servos = new Dictionary<int,Servo>();
         }
 
-        public new void Open()
+        public bool Connect()
         {
-            base.Open();
+            if (!GetPortNames().ToList().Contains(PortName)) return false;
+            Open();
             Execute();
-        }
-
-        public void AddServo(Int16 pin, Servo servo)
-        {
-            if (Servos.Contains(pin))
-            {
-                Servos[pin] = servo;
-            }
-            else
-            {
-                Servos.Add(pin, servo);
-            }
-        }
-
-        public void Move(MoveTypes type = MoveTypes.Normal, Int32 param = 0)
-        {
-            foreach (DictionaryEntry de in Servos)
-            {
-                Write("#" + de.Key + " P" + ((Servo)de.Value).Pulse);
-            }
-            switch (type)
-            {
-                case MoveTypes.Speed:
-                    Write(" S" + param);
-                    break;
-                case MoveTypes.Time:
-                    Write(" T" + param);
-                    break;
-                case MoveTypes.Normal:
-                    break;
-            }
-            Execute();
+            return IsOpen;
         }
 
         public void Execute()
         {
+            if (!IsOpen) return;
             Write(Convert.ToChar(13).ToString());
         }
 
-
-        public void FreeServos()
+        public void Update()
         {
-            foreach (DictionaryEntry de in Servos)
+            if (!IsOpen) return;
+            foreach (var kvp in Servos)
             {
-                Write("#" + de.Key + "P0");
+                Write("#" + kvp.Key + " P" + kvp.Value.Pulse);
+            }
+            Execute();
+        }
+
+        public void Update(ServoMove move, int param)
+        {
+            if (!IsOpen) return;
+            foreach (var kvp in Servos)
+            {
+                Write("#" + kvp.Key + " P" + kvp.Value.Pulse);
+            }
+            switch (move)
+            {
+                case ServoMove.Speed:
+                    Write(" S" + param);
+                    break;
+                case ServoMove.Time:
+                    Write(" T" + param);
+                    break;
+            }
+            Execute();
+        }
+
+        public void Free()
+        {
+            if (!IsOpen) return;
+            foreach (var kvp in Servos)
+            {
+                Write("#" + kvp.Key + "P0");
             }
             Execute();
         }
