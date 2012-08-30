@@ -1,19 +1,14 @@
 using System;
-#if MICRO
-using Robot.Micro.Core.States;
-namespace Robot.Micro.Core.Messaging.Messages
-#else
 using Robot.Core.States;
 namespace Robot.Core.Messaging.Messages
-#endif
 {
     public abstract class BaseMessage : IMessage
     {
         public DateTime Time { get; set; }
-        public bool Remote { get; set; }
+        //public bool Remote { get; set; }
         protected BaseMessage()
         {
-            Remote = false;
+            //Remote = false;
             Time = DateTime.Now;
         }
     }
@@ -46,16 +41,6 @@ namespace Robot.Core.Messaging.Messages
             return "Robot Ready";
         }
     }
-
-    /*
-    public class MoveServo : BaseMessage
-    {
-        public override string ToString()
-        {
-            return "Move Servo";
-        }
-    }
-    */
 
     public class StateRequest : BaseMessage
     {

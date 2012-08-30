@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO.Ports;
 using System.Linq;
 
@@ -27,7 +27,7 @@ namespace Robot.Core.Devices
         public void Execute()
         {
             if (!IsOpen) return;
-            Write(Convert.ToChar(13).ToString());
+            Write(Convert.ToChar(13).ToString(CultureInfo.InvariantCulture));
         }
 
         public void Update()

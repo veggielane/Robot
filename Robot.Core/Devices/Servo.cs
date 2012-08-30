@@ -1,16 +1,11 @@
-#if MICRO
-using Robot.Micro.Core.Maths;
-namespace Robot.Micro.Core.Devices
-#else
 using Robot.Core.Maths;
 namespace Robot.Core.Devices
-#endif
 {
     public class Servo
     {
         private Angle _angle = 0.0;
-        public Angle Min = Angle.FromDegrees(-45.0);
-        public Angle Max = Angle.FromDegrees(45.0);
+        public Angle Min = Angle.FromDegrees(-90.0);
+        public Angle Max = Angle.FromDegrees(90.0);
         public Angle Offset = Angle.FromDegrees(0);
         public Angle Angle
         {

@@ -24,8 +24,7 @@ namespace Robot.Stompy.States
         public void Start()
         {
             _robot.Bus.Add(new DebugMessage("test"));
-            _robot.servo2.Angle = 0.0;
-            _robot.servo2.Angle = -30.0;
+            _robot.Servo.Angle = -30.0;
             _robot.ServoController.Update();
         }
 

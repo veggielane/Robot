@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reactive.Linq;
 using Robot.Core;
 using Robot.Core.Devices;
+using Robot.Core.Kinematics;
 using Robot.Core.Maths;
 using Robot.Core.Messaging;
 using Robot.Core.Messaging.Messages;
@@ -24,9 +24,19 @@ namespace Robot.Stompy
         public IState CurrentState { get; private set; }
         private readonly Dictionary<Type,IState> _states = new Dictionary<Type, IState>();
 
-        public Servo servo1 = new Servo();
-        public Servo servo2 = new Servo() { Angle = Angle.FromDegrees(30) };
-        public Servo servo3 = new Servo();
+
+        public readonly Servo Servo = new Servo{ Angle = Angle.FromDegrees(30) };
+
+        public IBody Body;
+
+        public readonly ILeg LeftFront;
+        public readonly ILeg LeftMiddle;
+        public readonly ILeg LeftRear;
+
+        public readonly ILeg RightFront;
+        public readonly ILeg RightMiddle;
+        public readonly ILeg RightRear;
+
 
 
         public StompyRobot(IMessageBus bus, ITimer timer, IServoController servoController)
@@ -37,12 +47,58 @@ namespace Robot.Stompy
             Timer = timer;
 
             ServoController = servoController;
-            ServoController.Servos.Add(22, servo2);
+            ServoController.Servos.Add(22, Servo);
+
+
+            Body = new Body();
+
+            LeftFront = new Leg5DOF(Body);
+            LeftMiddle = new Leg4DOF(Body);
+            LeftRear = new Leg4DOF(Body);
+
+            RightFront = new Leg5DOF(Body);
+            RightMiddle = new Leg4DOF(Body);
+            RightRear = new Leg4DOF(Body);
+
+
+            ServoController.Servos.Add(0, (LeftFront as Leg5DOF).RotateServo);
+            ServoController.Servos.Add(4, (LeftFront as Leg5DOF).CoxaServo);
+            ServoController.Servos.Add(5, (LeftFront as Leg5DOF).FemurServo);
+            ServoController.Servos.Add(6, (LeftFront as Leg5DOF).TibiaServo);
+            ServoController.Servos.Add(7, (LeftFront as Leg5DOF).TarsServo);
+
+            ServoController.Servos.Add(8, (LeftMiddle as Leg4DOF).CoxaServo);
+            ServoController.Servos.Add(9, (LeftMiddle as Leg4DOF).FemurServo);
+            ServoController.Servos.Add(10, (LeftMiddle as Leg4DOF).TibiaServo);
+            ServoController.Servos.Add(11, (LeftMiddle as Leg4DOF).TarsServo);
+
+            ServoController.Servos.Add(12, (LeftRear as Leg4DOF).CoxaServo);
+            ServoController.Servos.Add(13, (LeftRear as Leg4DOF).FemurServo);
+            ServoController.Servos.Add(14, (LeftRear as Leg4DOF).TibiaServo);
+            ServoController.Servos.Add(15, (LeftRear as Leg4DOF).TarsServo);
+
+            ServoController.Servos.Add(16, (RightFront as Leg5DOF).RotateServo);
+            ServoController.Servos.Add(20, (RightFront as Leg5DOF).CoxaServo);
+            ServoController.Servos.Add(21, (RightFront as Leg5DOF).FemurServo);
+            ServoController.Servos.Add(22, (RightFront as Leg5DOF).TibiaServo);
+            ServoController.Servos.Add(23, (RightFront as Leg5DOF).TarsServo);
+
+            ServoController.Servos.Add(24, (RightMiddle as Leg4DOF).CoxaServo);
+            ServoController.Servos.Add(25, (RightMiddle as Leg4DOF).FemurServo);
+            ServoController.Servos.Add(26, (RightMiddle as Leg4DOF).TibiaServo);
+            ServoController.Servos.Add(27, (RightMiddle as Leg4DOF).TarsServo);
+
+            ServoController.Servos.Add(20, (RightRear as Leg4DOF).CoxaServo);
+            ServoController.Servos.Add(21, (RightRear as Leg4DOF).FemurServo);
+            ServoController.Servos.Add(22, (RightRear as Leg4DOF).TibiaServo);
+            ServoController.Servos.Add(23, (RightRear as Leg4DOF).TarsServo);
+
+
+
 
 
             AddState(new IdleState(this));
             AddState(new MainState(this));
-            
         }
 
   

@@ -1,10 +1,5 @@
-#if MICRO
-using Robot.Micro.Core.Maths;
-namespace Robot.Micro.Core.Kinematics
-#else
 using Robot.Core.Maths;
 namespace Robot.Core.Kinematics
-#endif
 {
     public interface ILeg
     {

@@ -1,9 +1,5 @@
 ﻿using System;
-#if MICRO
-namespace Robot.Micro.Core.Maths
-#else
 namespace Robot.Core.Maths
-#endif
 {
     public class Vect3
     {
@@ -208,11 +204,7 @@ namespace Robot.Core.Maths
 
         public override string ToString()
         {
-#if MICRO
-            return "Vector3<"+X+","+Y+","+Z+">";
-#else
             return (String.Format("Vector3<{0},{1},{2}>", X, Y, Z));
-#endif
         }
 
         public bool Equals(Vect3 a)

@@ -1,11 +1,7 @@
 ﻿using System;
 
-#if MICRO
-using Microsoft.SPOT;
-namespace Robot.Micro.Core.Maths
-#else
 namespace Robot.Core.Maths
-#endif
+
 {
     public struct Angle
     {

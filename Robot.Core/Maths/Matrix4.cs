@@ -1,9 +1,5 @@
 ﻿using System;
-#if MICRO
-namespace Robot.Micro.Core.Maths
-#else
 namespace Robot.Core.Maths
-#endif
 {
 
     public struct Matrix4

@@ -1,11 +1,6 @@
 using System;
-#if MICRO
-using Robot.Micro.Core.Threading;
-namespace Robot.Micro.Core.Timing
-#else
 using System.Threading.Tasks;
 namespace Robot.Core.Timing
-#endif
 {
     public class AsyncObservableTimer : ObservableTimer
     {

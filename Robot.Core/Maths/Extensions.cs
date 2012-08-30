@@ -1,8 +1,4 @@
-﻿#if MICRO
-namespace Robot.Micro.Core.Maths
-#else
-namespace Robot.Core.Maths
-#endif
+﻿namespace Robot.Core.Maths
 {
     public static class Extensions
     {

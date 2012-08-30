@@ -1,9 +1,5 @@
 ﻿using System;
-#if MICRO
-namespace Robot.Micro.Core.Maths
-#else
 namespace Robot.Core.Maths
-#endif
 {
     public class Quat
     {
@@ -151,12 +147,7 @@ namespace Robot.Core.Maths
 
         public override string ToString()
         {
-#if MICRO
-            return "Quat<"+X+","+Y+","+Z+","+W+">";
-#else
             return String.Format("Quat<{0},{1},{2},{3}>", X, Y, Z, W);
-#endif
-            
         }
 
         public override int GetHashCode()
