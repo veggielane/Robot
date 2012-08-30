@@ -47,8 +47,6 @@ namespace Robot.Stompy
             Timer = timer;
 
             ServoController = servoController;
-            ServoController.Servos.Add(22, Servo);
-
 
             Body = new Body();
 
@@ -88,10 +86,10 @@ namespace Robot.Stompy
             ServoController.Servos.Add(26, (RightMiddle as Leg4DOF).TibiaServo);
             ServoController.Servos.Add(27, (RightMiddle as Leg4DOF).TarsServo);
 
-            ServoController.Servos.Add(20, (RightRear as Leg4DOF).CoxaServo);
-            ServoController.Servos.Add(21, (RightRear as Leg4DOF).FemurServo);
-            ServoController.Servos.Add(22, (RightRear as Leg4DOF).TibiaServo);
-            ServoController.Servos.Add(23, (RightRear as Leg4DOF).TarsServo);
+            ServoController.Servos.Add(28, (RightRear as Leg4DOF).CoxaServo);
+            ServoController.Servos.Add(29, (RightRear as Leg4DOF).FemurServo);
+            ServoController.Servos.Add(30, (RightRear as Leg4DOF).TibiaServo);
+            ServoController.Servos.Add(31, (RightRear as Leg4DOF).TarsServo);
 
 
 
@@ -114,6 +112,10 @@ namespace Robot.Stompy
             }
 
             Bus.Add(StateRequest.Create<IdleState>());
+            while (IsRunning)
+            {
+
+            }
         }
 
         public void Stop()
