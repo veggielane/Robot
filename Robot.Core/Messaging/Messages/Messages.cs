@@ -88,4 +88,20 @@ namespace Robot.Core.Messaging.Messages
         }
     }
 
+    public class KeyPress : BaseMessage
+    {
+        public ConsoleKey Key { get; set; }
+
+        public KeyPress(ConsoleKey key)
+        {
+            Key = key;
+   }
+
+
+        public override string ToString()
+        {
+            return "KeyPress: " + Key;
+        }
+    }
+
 }

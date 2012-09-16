@@ -1,6 +1,7 @@
 ﻿using System;
 using Robot.Core.Devices;
 using Robot.Core.Messaging;
+using Robot.Core.Messaging.Messages;
 using Robot.Core.Timing;
 using Robot.Stompy;
 
@@ -17,6 +18,10 @@ namespace Robot.Raspberry.Stompy
                 stompy.Bus.Subscribe(Console.WriteLine);
                 //stompy.Bus.OfType<DebugMessage>().Subscribe(lcd.Display);
                 stompy.Run();
+                while (stompy.IsRunning)
+                {
+                    stompy.Bus.Add(new KeyPress(Console.ReadKey().Key));
+                }
             }
         }
     }

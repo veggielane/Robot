@@ -25,7 +25,7 @@ namespace Robot.Stompy
         private readonly Dictionary<Type,IState> _states = new Dictionary<Type, IState>();
 
 
-        public readonly Servo Servo = new Servo{ Angle = Angle.FromDegrees(30) };
+        public readonly Servo Servo = new Servo{ Angle = Angle.FromDegrees(0) };
 
         public IBody Body;
 
@@ -55,10 +55,41 @@ namespace Robot.Stompy
             LeftRear = new Leg4DOF(Body);
 
             RightFront = new Leg5DOF(Body);
-            RightMiddle = new Leg4DOF(Body);
+            RightMiddle = new Leg4DOF(Body)
+                {
+                    Offset = Matrix4.Translate(0.0, 0.0, 0.0),
+                    CoxaLength = 35.0,
+                    FemurLength = 52.0,
+                    //FemurInvert = true,
+                    TibiaLength = 48.0,
+                    TibiaOffset = Angle.FromDegrees(-90.0),
+                    FootPosition = new Vect3(35.0 + 52.0, 0.0, -48.0)
+                };
             RightRear = new Leg4DOF(Body);
 
 
+            //ServoController.Servos.Add(16, (RightFront as Leg5DOF).RotateServo);
+            //ServoController.Servos.Add(20, (RightFront as Leg5DOF).CoxaServo);
+            //ServoController.Servos.Add(21, (RightFront as Leg5DOF).FemurServo);
+            //ServoController.Servos.Add(22, (RightFront as Leg5DOF).TibiaServo);
+            //ServoController.Servos.Add(23, (RightFront as Leg5DOF).TarsServo);
+
+            ServoController.Servos.Add(24, (RightMiddle as Leg4DOF).CoxaServo);
+            ServoController.Servos.Add(25, (RightMiddle as Leg4DOF).FemurServo);
+            ServoController.Servos.Add(26, (RightMiddle as Leg4DOF).TibiaServo);
+            ServoController.Servos.Add(27, (RightMiddle as Leg4DOF).TarsServo);
+
+            //ServoController.Servos.Add(28, (RightRear as Leg4DOF).CoxaServo);
+            //ServoController.Servos.Add(29, (RightRear as Leg4DOF).FemurServo);
+            //ServoController.Servos.Add(30, (RightRear as Leg4DOF).TibiaServo);
+            //ServoController.Servos.Add(31, (RightRear as Leg4DOF).TarsServo);
+
+
+
+
+            //ServoController.Servos.Add(21, Servo);
+            //ServoController.Update(ServoMove.Time, 1000);
+            /*
             ServoController.Servos.Add(0, (LeftFront as Leg5DOF).RotateServo);
             ServoController.Servos.Add(4, (LeftFront as Leg5DOF).CoxaServo);
             ServoController.Servos.Add(5, (LeftFront as Leg5DOF).FemurServo);
@@ -90,7 +121,7 @@ namespace Robot.Stompy
             ServoController.Servos.Add(29, (RightRear as Leg4DOF).FemurServo);
             ServoController.Servos.Add(30, (RightRear as Leg4DOF).TibiaServo);
             ServoController.Servos.Add(31, (RightRear as Leg4DOF).TarsServo);
-
+            */
 
 
 
@@ -112,10 +143,7 @@ namespace Robot.Stompy
             }
 
             Bus.Add(StateRequest.Create<IdleState>());
-            while (IsRunning)
-            {
-
-            }
+ 
         }
 
         public void Stop()
