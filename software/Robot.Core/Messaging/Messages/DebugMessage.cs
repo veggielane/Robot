@@ -13,5 +13,9 @@ namespace Robot.Core.Messaging.Messages
         {
             Message = message;
         }
+        public override string ToString()
+        {
+            return "{0} {1}".Fmt(base.ToString(), Message);
+        }
     }
 }

@@ -13,6 +13,11 @@ namespace Robot.Core.Messaging.Messages
         {
             Time = DateTime.Now;
         }
+
+        public override string ToString()
+        {
+            return "[{0}] <{1}>".Fmt(Time, GetType().Name);
+        }
     }
 
 

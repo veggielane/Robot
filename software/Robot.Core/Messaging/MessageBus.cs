@@ -1,6 +1,7 @@
 using System;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
+using Robot.Core.Messaging.Messages;
 
 namespace Robot.Core.Messaging
 {
@@ -13,6 +14,7 @@ namespace Robot.Core.Messaging
         {
             _subject = new Subject<IMessage>();
             Messages = _subject.AsObservable();
+
         }
 
         public void Add(IMessage message)

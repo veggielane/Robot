@@ -7,8 +7,8 @@ namespace Robot.Test
     {
         static void Main(string[] args)
         {
-            var robot = new BaseRobot();
-            robot.Bus.Messages.Subscribe(Console.WriteLine);
+           // var robot = new BaseRobot();
+           // robot.Bus.Messages.Subscribe(Console.WriteLine);
 
             Console.ReadLine();
         }

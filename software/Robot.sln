@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Core", "Robot.Core\Robot.Core.csproj", "{51B8FEAF-4461-4252-A903-61338754EE0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Test", "Robot.Test\Robot.Test.csproj", "{C7FA8B11-941B-479F-A122-01B47BAC1E70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Server", "Robot.Server\Robot.Server.csproj", "{4D0C9F6E-8B68-424D-809E-C9D24192726B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Stompy", "Robot.Stompy\Robot.Stompy.csproj", "{C6C07BB5-5875-41E9-BA28-F75F10EF4E8A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		robopi-debug|Any CPU = robopi-debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51B8FEAF-4461-4252-A903-61338754EE0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51B8FEAF-4461-4252-A903-61338754EE0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51B8FEAF-4461-4252-A903-61338754EE0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51B8FEAF-4461-4252-A903-61338754EE0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51B8FEAF-4461-4252-A903-61338754EE0D}.robopi-debug|Any CPU.ActiveCfg = robopi-debug|Any CPU
+		{51B8FEAF-4461-4252-A903-61338754EE0D}.robopi-debug|Any CPU.Build.0 = robopi-debug|Any CPU
+		{C7FA8B11-941B-479F-A122-01B47BAC1E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7FA8B11-941B-479F-A122-01B47BAC1E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7FA8B11-941B-479F-A122-01B47BAC1E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7FA8B11-941B-479F-A122-01B47BAC1E70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7FA8B11-941B-479F-A122-01B47BAC1E70}.robopi-debug|Any CPU.ActiveCfg = robopi-debug|Any CPU
+		{C7FA8B11-941B-479F-A122-01B47BAC1E70}.robopi-debug|Any CPU.Build.0 = robopi-debug|Any CPU
+		{4D0C9F6E-8B68-424D-809E-C9D24192726B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D0C9F6E-8B68-424D-809E-C9D24192726B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D0C9F6E-8B68-424D-809E-C9D24192726B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D0C9F6E-8B68-424D-809E-C9D24192726B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D0C9F6E-8B68-424D-809E-C9D24192726B}.robopi-debug|Any CPU.ActiveCfg = robopi-debug|Any CPU
+		{4D0C9F6E-8B68-424D-809E-C9D24192726B}.robopi-debug|Any CPU.Build.0 = robopi-debug|Any CPU
+		{C6C07BB5-5875-41E9-BA28-F75F10EF4E8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6C07BB5-5875-41E9-BA28-F75F10EF4E8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6C07BB5-5875-41E9-BA28-F75F10EF4E8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6C07BB5-5875-41E9-BA28-F75F10EF4E8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6C07BB5-5875-41E9-BA28-F75F10EF4E8A}.robopi-debug|Any CPU.ActiveCfg = Release|Any CPU
+		{C6C07BB5-5875-41E9-BA28-F75F10EF4E8A}.robopi-debug|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
