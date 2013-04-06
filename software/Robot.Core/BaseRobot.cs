@@ -17,7 +17,6 @@ namespace Robot.Core
         protected BaseRobot(IMessageBus bus)
         {
             Bus = bus;
-
         }
 
         public abstract void Start();

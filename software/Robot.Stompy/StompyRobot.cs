@@ -16,12 +16,11 @@ namespace Robot.Stompy
             : base(bus)
         {
 
-            
         }
 
         public override void Start()
         {
-            Bus.Add(new DebugMessage("Robot Starting"));
+            Bus.Add(new DebugMessage("Robot Starting!!"));
         }
 
         public override void Stop()
