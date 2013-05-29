@@ -1,26 +1,33 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reactive.Linq;
-using System.Reactive.Subjects;
-using System.Text;
-using System.Threading.Tasks;
-using Robot.Core.Devices;
+﻿using Robot.Core.Devices;
 using Robot.Core.Messaging;
+using Robot.Core.Timing;
 
 namespace Robot.Core
 {
-    public abstract class BaseRobot:IRobot
+    public class BaseRobot:IRobot
     {
-        private readonly IMessageOutput[] _output;
         public IMessageBus Bus { get; private set; }
+        public ITimer Timer { get; private set; }
 
-        protected BaseRobot(IMessageBus bus)
+        protected BaseRobot(IMessageBus bus, ITimer timer)
         {
             Bus = bus;
+            Timer = timer;
         }
 
-        public abstract void Start();
-        public abstract void Stop();
-        public abstract void Dispose();
+        public void Start()
+        {
+            Timer.Start();
+        }
+
+        public void Stop()
+        {
+            
+        }
+
+        public void Dispose()
+        {
+            
+        }
     }
 }

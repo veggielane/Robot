@@ -50,9 +50,27 @@ namespace Robot.Core.Maths
             get { return Math.Pow(this[1, 4], 2.0) + Math.Pow(this[2, 4], 2.0) + Math.Pow(this[3, 4], 2.0); }
         }
 
+
         public Double Length
         {
             get { return Math.Sqrt(LengthSquared); }
+        }
+
+        public Matrix4 RotationComponent
+        {
+            get{ 
+                return new Matrix4(new[,]{
+                    { this[1, 1] , this[1, 2], this[1, 3] , 0  }, 
+                    { this[2, 1] , this[2, 2], this[2, 3] , 0  },
+                    { this[3, 1] , this[3, 2], this[3, 3] , 0  },
+                    { this[4, 1] , this[4, 2], this[4, 3] , 1  }
+               });
+            }
+        }
+
+        public Matrix4 TranslationComponent
+        {
+            get { return Translate(X, Y, Z); }
         }
 
         public static Matrix4 Identity

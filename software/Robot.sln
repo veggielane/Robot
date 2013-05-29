@@ -16,6 +16,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1012C9
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Specs", "Specs", "{441CA890-3D8D-4816-9736-AA934F5A4AAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot.Core.Specs", "Robot.Core.Specs\Robot.Core.Specs.csproj", "{C94C00E2-7AFA-4EA2-AACC-FD3D940BD1FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,8 +51,17 @@ Global
 		{C6C07BB5-5875-41E9-BA28-F75F10EF4E8A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C6C07BB5-5875-41E9-BA28-F75F10EF4E8A}.robopi-debug|Any CPU.ActiveCfg = Release|Any CPU
 		{C6C07BB5-5875-41E9-BA28-F75F10EF4E8A}.robopi-debug|Any CPU.Build.0 = Release|Any CPU
+		{C94C00E2-7AFA-4EA2-AACC-FD3D940BD1FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C94C00E2-7AFA-4EA2-AACC-FD3D940BD1FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C94C00E2-7AFA-4EA2-AACC-FD3D940BD1FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C94C00E2-7AFA-4EA2-AACC-FD3D940BD1FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C94C00E2-7AFA-4EA2-AACC-FD3D940BD1FF}.robopi-debug|Any CPU.ActiveCfg = Release|Any CPU
+		{C94C00E2-7AFA-4EA2-AACC-FD3D940BD1FF}.robopi-debug|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C94C00E2-7AFA-4EA2-AACC-FD3D940BD1FF} = {441CA890-3D8D-4816-9736-AA934F5A4AAE}
 	EndGlobalSection
 EndGlobal
