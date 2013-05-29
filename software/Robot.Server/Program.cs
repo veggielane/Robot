@@ -7,7 +7,7 @@ using Robot.Core.Timing;
 using Robot.Stompy;
 namespace Robot.Server
 {
-    internal class Program
+    class Program
     {
         private static void Main()
         {
@@ -19,23 +19,4 @@ namespace Robot.Server
             }
         }
     }
-    //class Startup
-    //{
-    //    public void Configuration(IAppBuilder app)
-    //    {
-    //        // Turn cross domain on 
-    //        var config = new HubConfiguration { EnableCrossDomain = true };
-
-    //        // This will map out to http://localhost:8080/signalr by default
-    //        app.MapHubs(config);
-    //    }
-    //}
-
-    //public class MyHub : Hub
-    //{
-    //    public void Send(string message)
-    //    {
-    //        Clients.All.addMessage(message);
-    //    }
-    //}
 }
