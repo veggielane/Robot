@@ -20,7 +20,7 @@ namespace Robot.Core.Kinematics
             Legs = new List<ILeg>();
         }
 
-        public KinematicEngine(IBody body, IList<ILeg> legs)
+        public KinematicEngine(IBody body, params ILeg[] legs)
             : this(body)
         {
             Legs = legs;

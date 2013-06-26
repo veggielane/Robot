@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Robot.Core;
 using Robot.Core.Devices;
+using Robot.Core.FiniteStateMachine.States;
 using Robot.Core.Kinematics;
 using Robot.Core.Maths;
 using Robot.Core.Messaging;
 using Robot.Core.Messaging.Messages;
 using Robot.Core.Timing;
+using Robot.Stompy.States;
 
 namespace Robot.Stompy
 {
@@ -36,7 +38,12 @@ namespace Robot.Stompy
             RightMiddle = new Leg3DOF(Matrix4.Identity) { FootPosition = new Vector3(10, 10, 10) };
             RightRear = new Leg3DOF(Matrix4.Identity) { FootPosition = new Vector3(10, 10, 10) };
 
-            _kinematicEngine = new KinematicEngine(_body, new[] { LeftFront, LeftMiddle, LeftRear, RightFront, RightMiddle, RightRear });
+            _kinematicEngine = new KinematicEngine(_body, LeftFront, LeftMiddle, LeftRear, RightFront, RightMiddle, RightRear);
+
+            StateMachine.AddState(new MovingState(this));
+
+            StateMachine.AddTransition<IdleState, StartCommand, MovingState>();
+            StateMachine.AddTransition<MovingState, StopCommand, IdleState>();
 
             Timer.Ticks.Subscribe(t =>
                 {
@@ -46,18 +53,22 @@ namespace Robot.Stompy
                 });
         }
 
-        public new void Start()
-        {
-             
-        }
-
-        public new void Stop()
+        public override void Start()
         {
 
+            Bus.Add(new StateMachineCommandMessage(typeof(StartCommand)));
         }
+
+        public override void Stop()
+        {
+
+        }
+
         public void Dispose()
         {
             Stop();
         }
     }
+
+    
 }

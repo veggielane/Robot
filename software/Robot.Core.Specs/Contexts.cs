@@ -24,7 +24,7 @@ namespace Robot.Core.Specs
 
     public class robot_is_started:with_a_new_BootStrap
     {
-        It should_start_the_robot = () => A.CallTo(() => sut.Robot.Start()).MustHaveHappened();
+       // It should_start_the_robot = () => A.CallTo(() => sut.Robot.Start()).MustHaveHappened();
     }
 
 

@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="States\MovingState.cs" />
     <Compile Include="StompyRobot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

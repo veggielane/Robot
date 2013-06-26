@@ -1,34 +1,31 @@
 ﻿using Robot.Core.Devices;
 using Robot.Core.FiniteStateMachine;
+using Robot.Core.FiniteStateMachine.States;
 using Robot.Core.Messaging;
 using Robot.Core.Timing;
 
 namespace Robot.Core
 {
-    public class BaseRobot:IRobot
+    public abstract class BaseRobot:IRobot
     {
         public IMessageBus Bus { get; private set; }
         public ITimer Timer { get; private set; }
 
-        private IStateMachine StateMachine { get; set; }
+        public IStateMachine StateMachine { get; private set; }
 
         protected BaseRobot(IMessageBus bus, ITimer timer)
         {
             Bus = bus;
             Timer = timer;
-
-            StateMachine = new StateMachine();
-        }
-
-        public void Start()
-        {
             Timer.Start();
+            StateMachine = new StateMachine(bus);
+            StateMachine.AddState(new IdleState());
+            StateMachine.Start<IdleState>();
         }
 
-        public void Stop()
-        {
-            
-        }
+        public abstract void Start();
+
+        public abstract void Stop();
 
         public void Dispose()
         {

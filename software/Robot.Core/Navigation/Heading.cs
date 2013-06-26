@@ -9,5 +9,6 @@ namespace Robot.Core.Navigation
     public class Heading
     {
         public Angle Angle;
+        public double Scale;
     }
 }

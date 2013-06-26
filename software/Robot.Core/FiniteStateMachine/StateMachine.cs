@@ -1,17 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Text;
+using Robot.Core.Messaging;
+using Robot.Core.Messaging.Messages;
 
 namespace Robot.Core.FiniteStateMachine
 {
     public class StateMachine:IStateMachine
     {
+        public IMessageBus Bus { get;private set; }
         public IState Current { get; private set; }
-
-
         private readonly IList<IState> _states = new List<IState>();
         private readonly IDictionary<Type, IDictionary<Type, Type>> _transitions = new Dictionary<Type, IDictionary<Type, Type>>();//<IState, IDictionary<IStateCommand,IState>
+
+        public StateMachine(IMessageBus bus)
+        {
+            Bus = bus;
+            Bus.Messages.OfType<StateMachineCommandMessage>().Subscribe(m => Next(m.Command));
+        }
 
         public void AddState(IState state)
         {
@@ -46,6 +54,7 @@ namespace Robot.Core.FiniteStateMachine
             var state = _states.SingleOrDefault(s => s.GetType() == typeof(T));
             if (state != null)
             {
+
                 Current = state;
                 Current.Start();
             }
@@ -53,13 +62,30 @@ namespace Robot.Core.FiniteStateMachine
 
         public void Next<T>() where T : IStateCommand
         {
-            var t = _transitions[Current.GetType()][typeof(T)];
-            var state = _states.SingleOrDefault(s => s.GetType() == t);
-            if(state != null)
+            Next(typeof(T));
+        }
+
+        public void Next(IStateCommand command)
+        {
+            Next(command.GetType());
+        }
+
+        private void Next(Type command)
+        {
+            if (_transitions.ContainsKey(Current.GetType()) && _transitions[Current.GetType()].ContainsKey(command))
             {
-                Current.Stop();
-                Current = state;
-                Current.Start();
+                var t = _transitions[Current.GetType()][command];
+                var state = _states.SingleOrDefault(s => s.GetType() == t);
+                if (state != null)
+                {
+                    Current.Stop();
+                    Current = state;
+                    Current.Start();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid State Request");
             }
         }
 

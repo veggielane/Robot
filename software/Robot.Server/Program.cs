@@ -14,7 +14,7 @@ namespace Robot.Server
             Console.WriteLine("Server starting ...");
             using (var r = BootStrap.Robot(new StompyRobot(new MessageBus(),new Timer())))
             {
-                r.Bus.Messages.OfType<DebugMessage>().Subscribe(Console.WriteLine);
+                r.Bus.Messages.Subscribe(Console.WriteLine);
                 Console.ReadLine();
             }
         }

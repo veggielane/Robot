@@ -4,7 +4,7 @@ namespace Robot.Core
 {
     public class BootStrap:IDisposable
     {
-        private readonly IRobot _robot;
+        public readonly IRobot _robot;
         public BootStrap(IRobot robot)
         {
             _robot = robot;
@@ -18,7 +18,7 @@ namespace Robot.Core
 
         public static IRobot Robot(IRobot robot)
         {
-            return robot;
+            return new BootStrap(robot)._robot;
         }
     }
 }
