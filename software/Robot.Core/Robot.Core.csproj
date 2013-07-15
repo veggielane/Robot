@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="BootStrap.cs" />
     <Compile Include="Devices\Servo.cs" />
+    <Compile Include="Devices\SSC32.cs" />
     <Compile Include="Devices\TextStar.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FiniteStateMachine\StateMachine.cs" />

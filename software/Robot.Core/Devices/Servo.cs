@@ -12,7 +12,22 @@ namespace Robot.Core.Devices
         public Angle Angle
         {
             get { return _angle; }
-            set { _angle = value.Clamp(Min, Max); }
+            set
+            {
+                if (value > Max)
+                {
+                    _angle = Max;
+                }
+                else if (value < Min)
+                {
+                    _angle = Min;
+                }
+                else
+                {
+                    _angle = value;
+                }
+               
+            }
         }
 
         public int Pulse

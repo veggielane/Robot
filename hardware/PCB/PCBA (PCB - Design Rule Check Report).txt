@@ -1,0 +1,65 @@
+Design Rule Check Report
+------------------------
+
+Report File    : P:\Software\Robot\hardware\PCB\PCBA (PCB - Design Rule Check Report).txt
+Report Written : Tuesday, July 02, 2013
+Project Path   : P:\Software\Robot\hardware\PCB\PCBS.prj
+Design Path    : P:\Software\Robot\hardware\PCB\PCBA.pcb
+Design Title   : 
+Created        : 02/07/2013 19:25:59
+Last Saved     : 02/07/2013 19:26:22
+Editing Time   : 3 min
+Units          : mm (precision 2)
+
+
+Results
+=======
+
+
+No errors found
+
+
+Settings
+========
+
+
+Spacings
+
+=========
+
+Tracks         No
+Pads and Vias  No
+Shapes         No
+Text           No
+Board          No
+Drills         No
+Components     No
+
+
+Manufacturing
+
+==============
+
+Drill Breakout                   No
+Drill Backoff                    No
+Silkscreen Overlap               No
+Copper Text In Board             No
+Min Track Width                  No
+Min Annular Ring                 No
+Min Paste Size                   No
+Vias In Pads                     No
+Unplated Vias                    No
+Unplated Pads With Inner Tracks  No
+
+
+Nets
+
+=====
+
+Net Completion                No
+Dangling Tracks               No
+Net Track Length Differences  No
+
+
+
+End Of Report.

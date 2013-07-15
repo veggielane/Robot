@@ -30,14 +30,14 @@ namespace Robot.Core
             return MathsHelper.Map(x, inMin, inMax, outMin, outMax);
         }
 
-        public static double Clamp(this double x, double min, double max)
-        {
-            return MathsHelper.Clamp(x, min, max);
-        }
-        public static Angle Clamp(this Angle x, Angle min, Angle max)
-        {
-            return Angle.FromRadians(MathsHelper.Clamp(x.Radians, min.Radians, min.Radians));
-        }
+        //public static double Clamp(this double x, double min, double max)
+        //{
+        //    return MathsHelper.Clamp(x, min, max);
+        //}
+        //public static Angle Clamp(this Angle x, Angle min, Angle max)
+        //{
+        //    return Angle.FromRadians(MathsHelper.Clamp(x.Radians, min.Radians, min.Radians));
+        //}
 
         public static double Pow(this double x, double power)
         {
